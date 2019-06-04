@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "variegated:silvered_apple",
+    "data": 0,
+    "count": 1
+  },
+  "pattern": [
+    "CCC",
+    "CAC",
+    "CCC"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "C": {
+      "type": "forge:ore_dict",
+      "ore":  "ingotSilver"
+    },
+    "A": {
+      "item": "minecraft:apple",
+      "data": 0
+    }
+  }
+}

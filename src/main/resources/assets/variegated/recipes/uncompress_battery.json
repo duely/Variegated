@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "thaumcraft:vis_battery",
+    "count": 9
+  },
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "variegated:compressed_vis_battery"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "modid": "variegated",
+    "name": "Variegated",
+    "description": "Just a bunch of things.",
+    "version": "${version}",
+    "credits": "Noobanidus",
+    "logoFile": "assets/variegated/textures/logo.png",
+    "mcversion": "${mc_version}",
+    "url": "http://github.com/duely/variegated",
+    "updateUrl": "",
+    "authorList": [
+      "Noobanidus"
+    ],
+    "parent": "",
+    "screenshots": [],
+    "dependencies": [
+      "forge"
+    ]
+  }
+]
