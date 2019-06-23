@@ -22,30 +22,30 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Variegated.MODID)
 public class ManaboundHandler {
-    @SubscribeEvent
-    @Optional.Method(modid = "botania")
-    public static void onLivingTick(LivingEvent.LivingUpdateEvent event) {
-        if (VariegatedConfig.Botania.enabled && event.getEntity() instanceof EntityPlayer) {
+  @SubscribeEvent
+  @Optional.Method(modid = "botania")
+  public static void onLivingTick(LivingEvent.LivingUpdateEvent event) {
+    if (VariegatedConfig.Botania.enabled && event.getEntity() instanceof EntityPlayer) {
 
-            EntityPlayer player = (EntityPlayer) event.getEntity();
+      EntityPlayer player = (EntityPlayer) event.getEntity();
 
-            List<ItemStack> equipment = new ArrayList<>();
-            for (NonNullList<ItemStack> list : Arrays.asList(player.inventory.mainInventory, player.inventory.armorInventory, player.inventory.offHandInventory)) {
-                equipment.addAll(list);
-            }
+      List<ItemStack> equipment = new ArrayList<>();
+      for (NonNullList<ItemStack> list : Arrays.asList(player.inventory.mainInventory, player.inventory.armorInventory, player.inventory.offHandInventory)) {
+        equipment.addAll(list);
+      }
 
-            IItemHandler baubles = BaublesApi.getBaublesHandler(player);
-            for (int i = 0; i < baubles.getSlots(); i++) {
-                equipment.add(baubles.getStackInSlot(i));
-            }
+      IItemHandler baubles = BaublesApi.getBaublesHandler(player);
+      for (int i = 0; i < baubles.getSlots(); i++) {
+        equipment.add(baubles.getStackInSlot(i));
+      }
 
-            for (ItemStack stack : equipment) {
-                if (!(stack.getItem() instanceof IManaUsingItem) && stack.isItemDamaged() && stack.isItemEnchanted() && (EnchantmentHelper.getEnchantments(stack).get(Registrar.manabound) != null)) {
-                    if (ManaItemHandler.requestManaExactForTool(stack, player, VariegatedConfig.Botania.manaCost, true)) {
-                        stack.setItemDamage(stack.getItemDamage() - 1);
-                    }
-                }
-            }
+      for (ItemStack stack : equipment) {
+        if (!(stack.getItem() instanceof IManaUsingItem) && stack.isItemDamaged() && stack.isItemEnchanted() && (EnchantmentHelper.getEnchantments(stack).get(Registrar.manabound) != null)) {
+          if (ManaItemHandler.requestManaExactForTool(stack, player, VariegatedConfig.Botania.manaCost, true)) {
+            stack.setItemDamage(stack.getItemDamage() - 1);
+          }
         }
+      }
     }
+  }
 }

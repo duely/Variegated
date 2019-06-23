@@ -20,35 +20,35 @@ import java.util.Map;
 @Mod.EventBusSubscriber(modid = Variegated.MODID, value = Side.CLIENT)
 @SuppressWarnings("unused")
 public class OreHandler {
-    private static Map<Integer, List<String>> ORE_MAP = new Int2ObjectOpenHashMap<>();
+  private static Map<Integer, List<String>> ORE_MAP = new Int2ObjectOpenHashMap<>();
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public static void onTooltip(ItemTooltipEvent event) {
-        if (VariegatedConfig.oredict) {
-            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
-                ItemStack item = event.getItemStack();
-                if (item.isEmpty()) return;
+  @SubscribeEvent
+  @SideOnly(Side.CLIENT)
+  public static void onTooltip(ItemTooltipEvent event) {
+    if (VariegatedConfig.oredict) {
+      if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
+        ItemStack item = event.getItemStack();
+        if (item.isEmpty()) return;
 
-                int itemId = RecipeItemHelper.pack(item);
+        int itemId = RecipeItemHelper.pack(item);
 
-                if (!ORE_MAP.containsKey(itemId)) {
-                    List<String> ores = new ArrayList<>();
-                    int[] ids = OreDictionary.getOreIDs(item);
-                    for (int id : ids) {
-                        ores.add("  - " + OreDictionary.getOreName(id));
-                    }
-                    ORE_MAP.put(itemId, ores);
-                }
-
-                List<String> names = ORE_MAP.get(itemId);
-                if (names.size() != 0) {
-                    event.getToolTip().add("");
-                    event.getToolTip().add("Ore names:");
-                    event.getToolTip().addAll(names);
-                }
-            }
+        if (!ORE_MAP.containsKey(itemId)) {
+          List<String> ores = new ArrayList<>();
+          int[] ids = OreDictionary.getOreIDs(item);
+          for (int id : ids) {
+            ores.add("  - " + OreDictionary.getOreName(id));
+          }
+          ORE_MAP.put(itemId, ores);
         }
+
+        List<String> names = ORE_MAP.get(itemId);
+        if (names.size() != 0) {
+          event.getToolTip().add("");
+          event.getToolTip().add("Ore names:");
+          event.getToolTip().addAll(names);
+        }
+      }
     }
+  }
 }
 

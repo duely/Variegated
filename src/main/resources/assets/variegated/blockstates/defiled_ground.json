@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_bottom_top",
+    "textures": {
+      "bottom": "variegated:blocks/defiled_earth_bottom",
+      "top": "variegated:blocks/defiled_earth_top",
+      "side": "variegated:blocks/defiled_earth_side"
+    }
+  },
+  "variants": {
+    "inventory": [
+      {}
+    ],
+    "normal": [
+      {}
+    ]
+  }
+}
+

@@ -14,29 +14,29 @@ import javax.annotation.Nonnull;
 @RitualRegister.Imperfect("sun")
 @SuppressWarnings("unused")
 public class SunRitual extends ImperfectRitual {
-    public SunRitual() {
-        super("sun", s -> s.getBlock() == getBlock(), 5000, true, "ritual.variegated.imperfect.sun");
+  public SunRitual() {
+    super("sun", s -> s.getBlock() == getBlock(), 5000, true, "ritual.variegated.imperfect.sun");
+  }
+
+  public static Block getBlock() {
+    Block block = null;
+    if (Loader.isModLoaded("botania")) {
+      block = Block.REGISTRY.getObject(new ResourceLocation("botania", "quartztypesunny"));
     }
 
-    public static Block getBlock() {
-        Block block = null;
-        if (Loader.isModLoaded("botania")) {
-            block = Block.REGISTRY.getObject(new ResourceLocation("botania", "quartztypesunny"));
-        }
-
-        if (block == null) {
-            block = Blocks.QUARTZ_BLOCK;
-        }
-
-        return block;
+    if (block == null) {
+      block = Blocks.QUARTZ_BLOCK;
     }
 
-    @Override
-    public boolean onActivate(@Nonnull IImperfectRitualStone imperfectRitualStone, @Nonnull EntityPlayer player) {
-        if (!imperfectRitualStone.getRitualWorld().isRemote)
-            imperfectRitualStone.getRitualWorld().getWorldInfo().setRaining(false);
+    return block;
+  }
 
-        return true;
-    }
+  @Override
+  public boolean onActivate(@Nonnull IImperfectRitualStone imperfectRitualStone, @Nonnull EntityPlayer player) {
+    if (!imperfectRitualStone.getRitualWorld().isRemote)
+      imperfectRitualStone.getRitualWorld().getWorldInfo().setRaining(false);
+
+    return true;
+  }
 }
 

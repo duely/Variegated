@@ -9,10 +9,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber(modid = Variegated.MODID)
 @SuppressWarnings("unused")
 public class TrampleHandler {
-    @SubscribeEvent
-    public static void onTrampleEvent(BlockEvent.FarmlandTrampleEvent event) {
-        if (VariegatedConfig.cancelTrample) {
-            event.setCanceled(true);
-        }
+  @SubscribeEvent
+  public static void onTrampleEvent(BlockEvent.FarmlandTrampleEvent event) {
+    if (VariegatedConfig.cancelTrample) {
+      event.setCanceled(true);
     }
+  }
 }

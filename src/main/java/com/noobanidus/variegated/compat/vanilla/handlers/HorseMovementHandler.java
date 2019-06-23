@@ -24,36 +24,36 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class HorseMovementHandler {
 
-    @SubscribeEvent
-    public static void onLeafEvent(GetCollisionBoxesEvent event) {
-        if (!VariegatedConfig.leafEnabled || event.getEntity() == null || !event.getEntity().isBeingRidden() || !(event.getEntity() instanceof AbstractHorse)) {
-            return;
-        }
-
-        List<AxisAlignedBB> collisions = event.getCollisionBoxesList();
-        for (int i = collisions.size() - 1; i >= 0; i--) {
-            AxisAlignedBB aabb = collisions.get(i);
-            BlockPos pos = new BlockPos(aabb.minX + (aabb.maxX - aabb.minX) * 0.5f, aabb.minY + (aabb.maxY - aabb.minY) * 0.5f, aabb.minZ + (aabb.maxZ - aabb.minZ) * 0.5f);
-            IBlockState state = event.getWorld().getBlockState(pos);
-            if (state.getBlock().isLeaves(state, event.getWorld(), pos) && event.getEntity().posY < aabb.maxY) {
-                event.getCollisionBoxesList().remove(i);
-            }
-        }
+  @SubscribeEvent
+  public static void onLeafEvent(GetCollisionBoxesEvent event) {
+    if (!VariegatedConfig.leafEnabled || event.getEntity() == null || !event.getEntity().isBeingRidden() || !(event.getEntity() instanceof AbstractHorse)) {
+      return;
     }
 
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public static void onSwimEvent(TickEvent.ClientTickEvent event) {
-        if (!VariegatedConfig.swimmingEnabled || FMLClientHandler.instance().getClient().isGamePaused()) {
-            return;
-        }
-
-        EntityPlayerSP player = FMLClientHandler.instance().getClientPlayerEntity();
-        if (player != null && player.getRidingEntity() instanceof AbstractHorse) {
-            AbstractHorse horse = (AbstractHorse) player.getRidingEntity();
-            if (horse.isInLava() || horse.isInWater()) {
-                horse.addVelocity(0f, 0.0125f, 0f);
-            }
-        }
+    List<AxisAlignedBB> collisions = event.getCollisionBoxesList();
+    for (int i = collisions.size() - 1; i >= 0; i--) {
+      AxisAlignedBB aabb = collisions.get(i);
+      BlockPos pos = new BlockPos(aabb.minX + (aabb.maxX - aabb.minX) * 0.5f, aabb.minY + (aabb.maxY - aabb.minY) * 0.5f, aabb.minZ + (aabb.maxZ - aabb.minZ) * 0.5f);
+      IBlockState state = event.getWorld().getBlockState(pos);
+      if (state.getBlock().isLeaves(state, event.getWorld(), pos) && event.getEntity().posY < aabb.maxY) {
+        event.getCollisionBoxesList().remove(i);
+      }
     }
+  }
+
+  @SideOnly(Side.CLIENT)
+  @SubscribeEvent
+  public static void onSwimEvent(TickEvent.ClientTickEvent event) {
+    if (!VariegatedConfig.swimmingEnabled || FMLClientHandler.instance().getClient().isGamePaused()) {
+      return;
+    }
+
+    EntityPlayerSP player = FMLClientHandler.instance().getClientPlayerEntity();
+    if (player != null && player.getRidingEntity() instanceof AbstractHorse) {
+      AbstractHorse horse = (AbstractHorse) player.getRidingEntity();
+      if (horse.isInLava() || horse.isInWater()) {
+        horse.addVelocity(0f, 0.0125f, 0f);
+      }
+    }
+  }
 }

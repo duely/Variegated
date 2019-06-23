@@ -15,19 +15,19 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber(modid = Variegated.MODID)
 @SuppressWarnings("unused")
 public class RitualEventHandler {
-    @SubscribeEvent
-    @Optional.Method(modid = "bloodmagic")
-    public static void onRitual(RitualEvent.RitualActivatedEvent event) {
-        if (event.getRitual() instanceof RitualMeteor && VariegatedConfig.BloodMagic.meteorEnabled) {
-            IMasterRitualStone mrs = event.getRitualStone();
-            World world = mrs.getWorldObj();
-            BlockPos p = mrs.getBlockPos();
+  @SubscribeEvent
+  @Optional.Method(modid = "bloodmagic")
+  public static void onRitual(RitualEvent.RitualActivatedEvent event) {
+    if (event.getRitual() instanceof RitualMeteor && VariegatedConfig.BloodMagic.meteorEnabled) {
+      IMasterRitualStone mrs = event.getRitualStone();
+      World world = mrs.getWorldObj();
+      BlockPos p = mrs.getBlockPos();
 
-            BlockPos pos = new BlockPos(p.getX(), p.getY() + VariegatedConfig.BloodMagic.y, p.getZ());
+      BlockPos pos = new BlockPos(p.getX(), p.getY() + VariegatedConfig.BloodMagic.y, p.getZ());
 
-            if (world.isAirBlock(pos)) {
-                world.setBlockState(pos, Blocks.STONE.getDefaultState());
-            }
-        }
+      if (world.isAirBlock(pos)) {
+        world.setBlockState(pos, Blocks.STONE.getDefaultState());
+      }
     }
+  }
 }

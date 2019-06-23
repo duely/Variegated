@@ -17,29 +17,29 @@ import static mcjty.theoneprobe.api.TextStyleClass.OK;
 import static mcjty.theoneprobe.api.TextStyleClass.WARNING;
 
 public class TOPHandler implements ITOPHandler {
-    @Override
-    public void handle(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data) {
-        if (blockState.getBlock() instanceof BlockCompressedVisBattery && mode == ProbeMode.EXTENDED) {
-            int power = blockState.getValue(BlockCompressedVisBattery.CHARGE);
-            probeInfo.text(String.format(OK + "Vis: %s" + ((power == 10) ? " (max)" : ""), power * 9));
-        } else if (blockState.getBlock() instanceof BlockVisBattery && mode == ProbeMode.EXTENDED) {
-            int power = blockState.getValue(BlockVisBattery.CHARGE);
-            probeInfo.text(String.format(OK + "Vis: %s" + ((power == 10) ? " (max)" : ""), power));
-        } else if (blockState.getBlock() instanceof BlockCrystal) {
-            int size = blockState.getValue(BlockCrystal.SIZE);
-            String progress = ((size == 0) ? "25%" : ((size == 1)) ? "50%" : ((size == 2)) ? "75%" : "100%");
+  @Override
+  public void handle(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data) {
+    if (blockState.getBlock() instanceof BlockCompressedVisBattery && mode == ProbeMode.EXTENDED) {
+      int power = blockState.getValue(BlockCompressedVisBattery.CHARGE);
+      probeInfo.text(String.format(OK + "Vis: %s" + ((power == 10) ? " (max)" : ""), power * 9));
+    } else if (blockState.getBlock() instanceof BlockVisBattery && mode == ProbeMode.EXTENDED) {
+      int power = blockState.getValue(BlockVisBattery.CHARGE);
+      probeInfo.text(String.format(OK + "Vis: %s" + ((power == 10) ? " (max)" : ""), power));
+    } else if (blockState.getBlock() instanceof BlockCrystal) {
+      int size = blockState.getValue(BlockCrystal.SIZE);
+      String progress = ((size == 0) ? "25%" : ((size == 1)) ? "50%" : ((size == 2)) ? "75%" : "100%");
 
-            probeInfo.text(((size == 3) ? OK : WARNING) + "Growth: " + progress);
-        } else if (blockState.getBlock() instanceof BlockVoidSiphon) {
-            TileVoidSiphon siphon = (TileVoidSiphon) world.getTileEntity(data.getPos());
+      probeInfo.text(((size == 3) ? OK : WARNING) + "Growth: " + progress);
+    } else if (blockState.getBlock() instanceof BlockVoidSiphon) {
+      TileVoidSiphon siphon = (TileVoidSiphon) world.getTileEntity(data.getPos());
 
-            if (siphon != null) {
-                int progress = (int) ((siphon.progress / 2000.f) * 100.f);
+      if (siphon != null) {
+        int progress = (int) ((siphon.progress / 2000.f) * 100.f);
 
-                probeInfo.text(((progress < 80) ? WARNING : OK) + String.format("Growth: %d%%", progress));
-            } else {
-                probeInfo.text(WARNING + "Invalid tile entity for Siphon.");
-            }
-        }
+        probeInfo.text(((progress < 80) ? WARNING : OK) + String.format("Growth: %d%%", progress));
+      } else {
+        probeInfo.text(WARNING + "Invalid tile entity for Siphon.");
+      }
     }
+  }
 }

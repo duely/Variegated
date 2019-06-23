@@ -13,23 +13,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber(modid = Variegated.MODID)
 public class Keybinds {
-    public static final String ArcTweaks_GROUP = "variegated.keybinds.group";
-    public static final String ArcTweaks_BINDS = "variegated.keybinds.";
-    public static KeyBinding offhandActivate = null;
+  public static final String ArcTweaks_GROUP = "variegated.keybinds.group";
+  public static final String ArcTweaks_BINDS = "variegated.keybinds.";
+  public static KeyBinding offhandActivate = null;
 
-    public static void initKeybinds() {
-        KeyBinding kb = new KeyBinding(ArcTweaks_BINDS + "offhand", 0, ArcTweaks_GROUP);
-        ClientRegistry.registerKeyBinding(kb);
-        offhandActivate = kb;
-    }
+  public static void initKeybinds() {
+    KeyBinding kb = new KeyBinding(ArcTweaks_BINDS + "offhand", 0, ArcTweaks_GROUP);
+    ClientRegistry.registerKeyBinding(kb);
+    offhandActivate = kb;
+  }
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public static void onKeybind(InputEvent.KeyInputEvent event) {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (mc.inGameHasFocus && offhandActivate.isKeyDown()) {
-            mc.playerController.processRightClick(mc.player, mc.player.world, EnumHand.OFF_HAND);
-        }
+  @SubscribeEvent
+  @SideOnly(Side.CLIENT)
+  public static void onKeybind(InputEvent.KeyInputEvent event) {
+    Minecraft mc = Minecraft.getMinecraft();
+    if (mc.inGameHasFocus && offhandActivate.isKeyDown()) {
+      mc.playerController.processRightClick(mc.player, mc.player.world, EnumHand.OFF_HAND);
     }
+  }
 }
 

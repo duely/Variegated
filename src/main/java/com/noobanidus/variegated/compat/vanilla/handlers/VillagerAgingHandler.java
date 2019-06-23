@@ -17,31 +17,31 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @SuppressWarnings("unused")
 public class VillagerAgingHandler {
 
-    @SubscribeEvent
-    public static void onVillageInteract(PlayerInteractEvent.EntityInteract event) {
-        if (!VariegatedConfig.ageVillagers) return;
+  @SubscribeEvent
+  public static void onVillageInteract(PlayerInteractEvent.EntityInteract event) {
+    if (!VariegatedConfig.ageVillagers) return;
 
-        ItemStack item = event.getItemStack();
+    ItemStack item = event.getItemStack();
 
-        if (item.isEmpty() || !(event.getTarget() instanceof EntityVillager)) return;
+    if (item.isEmpty() || !(event.getTarget() instanceof EntityVillager)) return;
 
-        EntityPlayer player = event.getEntityPlayer();
-        if (player.world.isRemote) return;
+    EntityPlayer player = event.getEntityPlayer();
+    if (player.world.isRemote) return;
 
-        EntityVillager villager = (EntityVillager) event.getTarget();
+    EntityVillager villager = (EntityVillager) event.getTarget();
 
-        if (villager.isChild() && item.getItem() == Items.EMERALD) {
-            BlockPos pos = villager.getPos();
-            ((WorldServer) villager.world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 2, 0, 0, 0, 0.5);
+    if (villager.isChild() && item.getItem() == Items.EMERALD) {
+      BlockPos pos = villager.getPos();
+      ((WorldServer) villager.world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 2, 0, 0, 0, 0.5);
 
-            villager.addGrowth(VariegatedConfig.ageValue);
+      villager.addGrowth(VariegatedConfig.ageValue);
 
-            if (!player.capabilities.isCreativeMode) {
-                item.shrink(1);
-            }
+      if (!player.capabilities.isCreativeMode) {
+        item.shrink(1);
+      }
 
-            event.setCanceled(true);
-        }
+      event.setCanceled(true);
     }
+  }
 }
 

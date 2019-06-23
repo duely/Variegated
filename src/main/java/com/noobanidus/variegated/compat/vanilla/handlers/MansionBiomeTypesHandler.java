@@ -17,44 +17,44 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MansionBiomeTypesHandler {
-    public static void init() {
-        if (!VariegatedConfig.extraMansions) return;
+  public static void init() {
+    if (!VariegatedConfig.extraMansions) return;
 
-        try {
-            modifyFields();
-        } catch (ReflectiveOperationException e) {
-            Variegated.LOG.error("[Variegated] Error adjusting biomes for Woodland Mansion.");
-            e.printStackTrace();
-        }
+    try {
+      modifyFields();
+    } catch (ReflectiveOperationException e) {
+      Variegated.LOG.error("[Variegated] Error adjusting biomes for Woodland Mansion.");
+      e.printStackTrace();
+    }
+  }
+
+  public static void modifyFields() throws ReflectiveOperationException {
+    Field field = ObfuscationReflectionHelper.findField(WoodlandMansion.class, "field_191072_a");
+    field.setAccessible(true);
+
+    Field modifiers = Field.class.getDeclaredField("modifiers");
+    modifiers.setAccessible(true);
+    modifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+    List<Biome> newBiomes = new ArrayList<>();
+
+    newBiomes.addAll(Arrays.asList(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.MUTATED_BIRCH_FOREST, Biomes.MUTATED_FOREST, Biomes.FOREST_HILLS, Biomes.FOREST, Biomes.MUTATED_TAIGA, Biomes.MUTATED_ROOFED_FOREST, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.COLD_TAIGA, Biomes.COLD_TAIGA_HILLS, Biomes.MUTATED_REDWOOD_TAIGA, Biomes.MUTATED_REDWOOD_TAIGA_HILLS));
+
+    if (Loader.isModLoaded("traverse")) {
+      newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:woodlands")));
+      newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:autumnal_woods")));
+      newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:thicket")));
+      newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:forested_hills")));
+      newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:birch_forested_hills")));
+      newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:autumnal_wooded_hills")));
+      newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:snowy_coniferous_forest")));
+    }
+    if (Loader.isModLoaded("thaumcraft")) {
+      newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("thaumcraft:magical_forest")));
     }
 
-    public static void modifyFields() throws ReflectiveOperationException {
-        Field field = ObfuscationReflectionHelper.findField(WoodlandMansion.class, "field_191072_a");
-        field.setAccessible(true);
+    field.set(null, newBiomes);
 
-        Field modifiers = Field.class.getDeclaredField("modifiers");
-        modifiers.setAccessible(true);
-        modifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-
-        List<Biome> newBiomes = new ArrayList<>();
-
-        newBiomes.addAll(Arrays.asList(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.MUTATED_BIRCH_FOREST, Biomes.MUTATED_FOREST, Biomes.FOREST_HILLS, Biomes.FOREST, Biomes.MUTATED_TAIGA, Biomes.MUTATED_ROOFED_FOREST, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.COLD_TAIGA, Biomes.COLD_TAIGA_HILLS, Biomes.MUTATED_REDWOOD_TAIGA, Biomes.MUTATED_REDWOOD_TAIGA_HILLS));
-
-        if (Loader.isModLoaded("traverse")) {
-            newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:woodlands")));
-            newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:autumnal_woods")));
-            newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:thicket")));
-            newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:forested_hills")));
-            newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:birch_forested_hills")));
-            newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:autumnal_wooded_hills")));
-            newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("traverse:snowy_coniferous_forest")));
-        }
-        if (Loader.isModLoaded("thaumcraft")) {
-            newBiomes.add(ForgeRegistries.BIOMES.getValue(new ResourceLocation("thaumcraft:magical_forest")));
-        }
-
-        field.set(null, newBiomes);
-
-        Variegated.LOG.info("[Variegated] Adjusted Woodland Mansions to spawn in additional biomes.");
-    }
+    Variegated.LOG.info("[Variegated] Adjusted Woodland Mansions to spawn in additional biomes.");
+  }
 }

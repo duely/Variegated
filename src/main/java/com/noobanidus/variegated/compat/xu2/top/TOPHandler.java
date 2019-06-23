@@ -14,11 +14,11 @@ import static mcjty.theoneprobe.api.TextStyleClass.WARNING;
 
 public class TOPHandler implements ITOPHandler {
 
-    @Override
-    public void handle(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data) {
-        if (blockState.getBlock() instanceof BlockEnderLilly) {
-            int growthState = blockState.getValue(BlockEnderLilly.GROWTH_STATE);
-            probeInfo.text((growthState == 7) ? OK + "Fully grown" : "Growth: " + WARNING + String.format("%s%%", growthState * 14));
-        }
+  @Override
+  public void handle(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data) {
+    if (blockState.getBlock() instanceof BlockEnderLilly) {
+      int growthState = blockState.getValue(BlockEnderLilly.GROWTH_STATE);
+      probeInfo.text((growthState == 7) ? OK + "Fully grown" : "Growth: " + WARNING + String.format("%s%%", growthState * 14));
     }
+  }
 }
