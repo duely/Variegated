@@ -4,14 +4,11 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Config(modid = Variegated.MODID)
 @SuppressWarnings("unused")
 public class VariegatedConfig {
   @SubscribeEvent
-  @SideOnly(Side.CLIENT)
   public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
     if (event.getModID().equals(Variegated.MODID)) {
       ConfigManager.sync(Variegated.MODID, Config.Type.INSTANCE);
@@ -114,10 +111,26 @@ public class VariegatedConfig {
     @Config.Name("Require silk touch")
     public boolean requireSilkTouch = false;
 
-    @Config.Comment("Set the chance per tick of spawning mobs (higher value = rarer)")
+    @Config.Comment("Set the chance per tick of spawning mobs (higher value = rarer, this value is ignored if Spawn on tick is enabled)")
     @Config.Name("Spawn chance")
     @Config.RangeInt(min = 1)
     public int spawnChance = 3200;
+
+    @Config.Comment("Set to true to enable configuration to happen on a regular basis with potential randomisation")
+    @Config.Name("Spawn on tick")
+    public boolean spawnOnTick = true;
+
+    @Config.Comment("How often spawns should happen in ticks (multiply by 20 to convert to seconds)")
+    @Config.Name("Spawn every tick")
+    public int spawnTickRate = 680; // 34 seconds
+
+    @Config.Comment("Set to true to enable variance by a random number of the tick rate")
+    @Config.Name("Enable tick variance")
+    public boolean tickVariance = true;
+
+    @Config.Comment("Set to the number of ticks to randomly add (or subtract) from the next spawn")
+    @Config.Name("Tick variance")
+    public int tickVarianceAmount = 100;
   }
 
   public static class BloodMagic {

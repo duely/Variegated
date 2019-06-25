@@ -4,6 +4,7 @@ import com.noobanidus.variegated.VariegatedConfig;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -17,25 +18,14 @@ import net.minecraft.world.chunk.storage.AnvilChunkLoader;
 import net.minecraftforge.event.ForgeEventFactory;
 
 public class TileEntityDefiledGround extends TileEntity implements ITickable {
-  /*private final MobSpawnerBaseLogic logic = new MobSpawnerBaseLogic() {
-    @Override
-    public void broadcastEvent(int id) {
-      TileEntityDefiledGround.this.getWorld().addBlockEvent(TileEntityDefiledGround.this.getPos(), Registrar.defiled, id, 0);
-    }
+  private int nextSpawn = 0;
 
-    @Override
-    public World getSpawnerWorld() {
-      return TileEntityDefiledGround.this.getWorld();
-    }
-
-    @Override
-    public BlockPos getSpawnerPosition() {
-      return TileEntityDefiledGround.this.getPos();
-    }
-
-    // ????????????????
-
-  };*/
+  private int getCurrentTick() {
+    if (world.isRemote) return -1;
+    MinecraftServer server = world.getMinecraftServer();
+    if (server == null) return -1;
+    return server.getTickCounter();
+  }
 
   @Override
   public void update() {
@@ -47,7 +37,28 @@ public class TileEntityDefiledGround extends TileEntity implements ITickable {
 
     if (!VariegatedConfig.DefiledGround.defiledGroundEnabled) return;
 
-    if (world.rand.nextInt(VariegatedConfig.DefiledGround.spawnChance) != 0) return;
+    if (VariegatedConfig.DefiledGround.spawnOnTick) {
+      if (nextSpawn <= getCurrentTick()) {
+        int increment = VariegatedConfig.DefiledGround.spawnTickRate + getCurrentTick();
+        int variance = 1;
+        if (VariegatedConfig.DefiledGround.tickVariance) {
+          variance = world.rand.nextInt(Math.max(1, VariegatedConfig.DefiledGround.tickVarianceAmount));
+          increment += (world.rand.nextBoolean() ? variance : -variance);
+        }
+        if (nextSpawn == 0) {
+          nextSpawn = (world.rand.nextInt(Math.max(1, variance)) + increment) / 2;
+          return;
+        } else {
+          nextSpawn = increment;
+        }
+      } else {
+        return;
+      }
+    } else {
+      if (world.rand.nextInt(VariegatedConfig.DefiledGround.spawnChance) != 0) {
+        return;
+      }
+    }
 
     if (VariegatedConfig.DefiledGround.minimumLight != -1) {
       if (world.getLightFor(EnumSkyBlock.BLOCK, spawnPoint) > VariegatedConfig.DefiledGround.minimumLight) return;
