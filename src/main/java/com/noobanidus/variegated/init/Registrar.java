@@ -7,6 +7,7 @@ import com.noobanidus.variegated.compat.bloodmagic.items.BloodApple;
 import com.noobanidus.variegated.compat.botania.enchantment.EnchantmentManabound;
 import com.noobanidus.variegated.compat.thaumcraft.blocks.BlockCompressedVisBattery;
 import com.noobanidus.variegated.potions.PotionBoon;
+import com.noobanidus.variegated.potions.PotionLove;
 import com.noobanidus.variegated.tileentities.TileEntityDefiledGround;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -49,10 +50,13 @@ public class Registrar {
 
   private static int duration = 4800;
 
-  private static Potion boon = new PotionBoon();
-  private static PotionType boonI = new PotionType("boon", new PotionEffect(boon, duration));
-  private static PotionType boonII = new PotionType("boon", new PotionEffect(boon, duration, 1));
-  private static PotionType boonIII = new PotionType("boon", new PotionEffect(boon, duration, 2));
+  public static Potion boon = new PotionBoon();
+  public static PotionType boonI = new PotionType("boon", new PotionEffect(boon, duration));
+  public static PotionType boonII = new PotionType("boon", new PotionEffect(boon, duration, 1));
+  public static PotionType boonIII = new PotionType("boon", new PotionEffect(boon, duration, 2));
+
+  public static Potion attraction = new PotionLove();
+  public static PotionType attractionI = new PotionType("attraction", new PotionEffect(attraction, 10 * 20));
 
   @SuppressWarnings("ConstantConditions")
   public static void preInit() {
@@ -141,6 +145,7 @@ public class Registrar {
   @SubscribeEvent
   public static void registerPotions(RegistryEvent.Register<Potion> event) {
     event.getRegistry().register(boon);
+    event.getRegistry().register(attraction);
   }
 
   @SubscribeEvent
@@ -149,14 +154,17 @@ public class Registrar {
       boonI.setRegistryName(Variegated.MODID, "boon");
       boonII.setRegistryName(Variegated.MODID, "boon2");
       boonIII.setRegistryName(Variegated.MODID, "boon3");
+      attractionI.setRegistryName(Variegated.MODID, "attraction");
 
       event.getRegistry().register(boonI);
       event.getRegistry().register(boonII);
       event.getRegistry().register(boonIII);
+      event.getRegistry().register(attractionI);
 
       PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(Items.FISH, 1, ItemFishFood.FishType.COD.getMetadata())), boonI);
       PotionHelper.addMix(boonI, Ingredient.fromStacks(new ItemStack(Items.FISH, 1, ItemFishFood.FishType.CLOWNFISH.getMetadata())), boonII);
       PotionHelper.addMix(boonII, Items.EMERALD, boonIII);
+      PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromItem(Items.EMERALD), attractionI);
     }
   }
 }
