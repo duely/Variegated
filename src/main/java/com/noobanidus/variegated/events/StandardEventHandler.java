@@ -22,7 +22,13 @@ public class StandardEventHandler {
     } else*/
     if (!event.getEntity().isCreatureType(EnumCreatureType.MONSTER, false) && !(event.getEntity() instanceof IMob) && event.getEntity() instanceof EntityAnimal) {
       EntityAnimal animal = (EntityAnimal) event.getEntity();
-      animal.tasks.addTask(3, new EntityAILoveTempt(animal, 1D));
+      EntityAILoveTempt temp;
+      try {
+        temp = new EntityAILoveTempt(animal, 1D);
+      } catch (IllegalArgumentException exception) {
+        return;
+      }
+      animal.tasks.addTask(3, temp);
     }
   }
 }
