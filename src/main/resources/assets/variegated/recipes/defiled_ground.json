@@ -1,0 +1,23 @@
+{
+  "pattern": [
+    "KSK",
+    "SOS",
+    "KSK"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "K": {
+      "type": "variegated:skull"
+    },
+    "O": {
+      "type": "forge:ore_dict",
+      "ore": "obsidian"
+    },
+    "S": {
+      "item": "minecraft:soul_sand"
+    }
+  },
+  "result": {
+    "item": "variegated:defiled_ground"
+  }
+}
