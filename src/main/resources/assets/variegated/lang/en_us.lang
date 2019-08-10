@@ -1,7 +1,7 @@
 tile.compressed_vis_battery.name=Compressed Vis Battery
 tile.defiled_ground.name=Defiled Ground
-enchantment.arctweaks.manabound=Manabound
-enchantment.arctweaks.manabound.desc=Allows items to be repaired by mana found in your inventory, but at a greater cost than regular mana-based tools.
+enchantment.variegated.manabound=Manabound
+enchantment.variegated.manabound.desc=Allows items to be repaired by mana found in your inventory, but at a greater cost than regular mana-based tools.
 item.blood_apple.name=Blood Apple
 item.golden_potato.name=Golden Potato
 item.silvered_potato.name=Silvered Potato

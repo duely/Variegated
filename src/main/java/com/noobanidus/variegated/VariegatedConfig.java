@@ -91,6 +91,18 @@ public class VariegatedConfig {
   @Config.Name("Banner stack size")
   @Config.RangeInt(min = 1, max = 64)
   public static int bannerCount = 64;
+  @Config.Comment("Increase size of minecart stacks")
+  @Config.Name("Minecart stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int minecartCount = 64;
+  @Config.Comment("Increase size of potion stacks")
+  @Config.Name("Potion stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int potionCount = 64;
+  @Config.Comment("Increase size of boat stacks")
+  @Config.Name("Boat stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int boatCount = 64;
   @Config.Comment("Increase size of loot bag stacks [Thaumcraft only]")
   @Config.Name("Loot bag stack size")
   @Config.RangeInt(min = 1, max = 64)
@@ -131,6 +143,26 @@ public class VariegatedConfig {
   @Config.Name("Inverted potentia stack size")
   @Config.RangeInt(min = 1, max = 64)
   public static int potentiaCount = 64;
+  @Config.Comment("Increase the stack size of coins [Treasure2! only]")
+  @Config.Name("Coin stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int coinCount = 64;
+  @Config.Comment("Increase the stack size of tea cups [SimplyTea only]")
+  @Config.Name("Tea cup stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int cupCount = 64;
+  @Config.Comment("Increase the stack size of soul vials [EnderIO only]")
+  @Config.Name("Soul vial stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int soulVialCount = 64;
+  @Config.Comment("Increase the stack size of combustive cod [Combustive Fishing only]")
+  @Config.Name("Combustive cod stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int codCount = 64;
+  @Config.Comment("Increase the stack size of lenses [Astral Sorcery only]")
+  @Config.Name("Lens stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int lensCount = 64;
   @Config.Comment("Cancel trampling events for crops and farmland")
   @Config.Name("Cancel Trample")
   public static boolean cancelTrample = true;

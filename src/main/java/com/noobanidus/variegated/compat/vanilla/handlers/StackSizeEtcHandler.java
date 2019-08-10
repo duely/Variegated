@@ -40,6 +40,7 @@ public class StackSizeEtcHandler {
     int bucketCount = VariegatedConfig.bucketCount;
     if (bucketCount <= 64 && bucketCount > 0) {
       Items.BUCKET.setMaxStackSize(bucketCount);
+      Items.MILK_BUCKET.setMaxStackSize(bucketCount);
     }
 
     int eggCount = VariegatedConfig.eggCount;
@@ -60,6 +61,33 @@ public class StackSizeEtcHandler {
     int bannerCount = VariegatedConfig.bannerCount;
     if (bannerCount <= 64 && bannerCount > 0) {
       Items.BANNER.setMaxStackSize(bannerCount);
+    }
+
+    int minecartCount = VariegatedConfig.minecartCount;
+    if (minecartCount <= 64 && minecartCount > 0) {
+      Items.CHEST_MINECART.setMaxStackSize(minecartCount);
+      Items.MINECART.setMaxStackSize(minecartCount);
+      Items.COMMAND_BLOCK_MINECART.setMaxStackSize(minecartCount);
+      Items.FURNACE_MINECART.setMaxStackSize(minecartCount);
+      Items.TNT_MINECART.setMaxStackSize(minecartCount);
+      Items.HOPPER_MINECART.setMaxStackSize(minecartCount);
+    }
+
+    int potionCount = VariegatedConfig.potionCount;
+    if (potionCount <= 64 && potionCount > 0) {
+      Items.POTIONITEM.setMaxStackSize(potionCount);
+      Items.LINGERING_POTION.setMaxStackSize(potionCount);
+      Items.SPLASH_POTION.setMaxStackSize(potionCount);
+    }
+
+    int boatCount = VariegatedConfig.boatCount;
+    if (boatCount <= 64 && boatCount > 0) {
+      Items.BOAT.setMaxStackSize(boatCount);
+      Items.ACACIA_BOAT.setMaxStackSize(boatCount);
+      Items.BIRCH_BOAT.setMaxStackSize(boatCount);
+      Items.DARK_OAK_BOAT.setMaxStackSize(boatCount);
+      Items.JUNGLE_BOAT.setMaxStackSize(boatCount);
+      Items.SPRUCE_BOAT.setMaxStackSize(boatCount);
     }
 
     if (Loader.isModLoaded("evilcraft")) {
@@ -148,10 +176,65 @@ public class StackSizeEtcHandler {
       }
     }
 
+    if (Loader.isModLoaded("treasure2")) {
+      int coinCount = VariegatedConfig.coinCount;
+      if (coinCount <= 64 && coinCount > 0) {
+        Item silverCoin = Item.REGISTRY.getObject(new ResourceLocation("treasure2", "silver_coin"));
+        Item goldCoin = Item.REGISTRY.getObject(new ResourceLocation("treasure2", "gold_coin"));
+
+        if (silverCoin != null) {
+          silverCoin.setMaxStackSize(coinCount);
+        }
+        if (goldCoin != null) {
+          goldCoin.setMaxStackSize(coinCount);
+        }
+      }
+    }
+
+    if (Loader.isModLoaded("simplytea")) {
+      int cupCount = VariegatedConfig.cupCount;
+      if (cupCount <= 64 && cupCount > 0) {
+        Item cup = Item.REGISTRY.getObject(new ResourceLocation("simplytea", "cup"));
+        if (cup != null) {
+          cup.setMaxStackSize(cupCount);
+        }
+      }
+    }
+
+    if (Loader.isModLoaded("enderio")) {
+      int soulVialCount = VariegatedConfig.soulVialCount;
+      if (soulVialCount <= 64 && soulVialCount > 0) {
+        Item vial = Item.REGISTRY.getObject(new ResourceLocation("enderio", "soul_vial"));
+        if (vial != null) {
+          vial.setMaxStackSize(soulVialCount);
+        }
+      }
+    }
+
+    if (Loader.isModLoaded("combustfish")) {
+      int codCount = VariegatedConfig.codCount;
+      if (codCount <= 64 && codCount > 0) {
+        Item cod = Item.REGISTRY.getObject(new ResourceLocation("combustfish", "combustive_cod"));
+        if (cod != null) {
+          cod.setMaxStackSize(codCount);
+        }
+      }
+    }
+
+    if (Loader.isModLoaded("astralsorcery")) {
+      int lensCount = VariegatedConfig.lensCount;
+      if (lensCount <= 64 && lensCount > 0) {
+        Item lens = Item.REGISTRY.getObject(new ResourceLocation("astralsorcery", "itemcoloredlens"));
+        if (lens != null) {
+          lens.setMaxStackSize(lensCount);
+        }
+      }
+    }
+
     Item.REGISTRY.forEach((item) -> {
       int size = item.getItemStackLimit();
       if (size > 1 && size < 64) {
-        Variegated.LOG.debug(item.getRegistryName().toString() + ": stack size " + size);
+        Variegated.LOG.info(item.getRegistryName().toString() + ": stack size " + size);
       }
     });
   }
