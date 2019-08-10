@@ -71,6 +71,66 @@ public class VariegatedConfig {
   @Config.Name("Enchanted Book Stack Size")
   @Config.RangeInt(min = 1, max = 64)
   public static int bookCount = 64;
+  @Config.Comment("Increase size of bucket stacks")
+  @Config.Name("Bucket stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int bucketCount = 64;
+  @Config.Comment("Increase size of egg stacks")
+  @Config.Name("Egg stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int eggCount = 64;
+  @Config.Comment("Increase size of written book stacks")
+  @Config.Name("Written book stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int writtenBookCount = 64;
+  @Config.Comment("Increase size of armor stand stacks")
+  @Config.Name("Armor stand stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int armorStandCount = 64;
+  @Config.Comment("Increase size of banner stacks")
+  @Config.Name("Banner stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int bannerCount = 64;
+  @Config.Comment("Increase size of loot bag stacks [Thaumcraft only]")
+  @Config.Name("Loot bag stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int lootBagCount = 64;
+  @Config.Comment("Increase size of taint bottle stacks [Thaumcraft only]")
+  @Config.Name("Taint bottle stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int taintBottleCount = 64;
+  @Config.Comment("Increase size of causality collapser stacks [Thaumcraft only]")
+  @Config.Name("Causality collapser stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int causalityCount = 64;
+  @Config.Comment("Increase size of snare stacks [Blood Magic only]")
+  @Config.Name("Snare stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int snareCount = 64;
+  @Config.Comment("Increase the stack size of ender tears [EvilCraft only]")
+  @Config.Name("Ender Tear stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int enderTearCount = 64;
+  @Config.Comment("Increase the stack size of werewolf flesh [EvilCraft only]")
+  @Config.Name("Werewolf flesh stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int werewolfCount = 64;
+  @Config.Comment("Increase the stack size of lightning grenades [EvilCraft only]")
+  @Config.Name("Lightning grenade stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int lightningCount = 64;
+  @Config.Comment("Increase the stack size of redstone grenades [EvilCraft only]")
+  @Config.Name("Redstone grenade stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int redstoneCount = 64;
+  @Config.Comment("Increase the stack size of dark power gems [EvilCraft only]")
+  @Config.Name("Dark power gem stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int darkPowerCount = 64;
+  @Config.Comment("Increase the stack size of inverted potentia [EvilCraft only]")
+  @Config.Name("Inverted potentia stack size")
+  @Config.RangeInt(min = 1, max = 64)
+  public static int potentiaCount = 64;
   @Config.Comment("Cancel trampling events for crops and farmland")
   @Config.Name("Cancel Trample")
   public static boolean cancelTrample = true;

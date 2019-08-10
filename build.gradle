@@ -83,8 +83,6 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "vazkii.botania:Botania:r1.10-357.7"
-
     deobfCompile "com.wayoftime.bloodmagic:BloodMagic:1.12.2-2.4.0-102"
     deobfCompile "info.amerifrance.guideapi:Guide-API:1.12-2.1.4-57"
 
