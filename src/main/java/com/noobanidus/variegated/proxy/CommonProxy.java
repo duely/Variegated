@@ -3,6 +3,7 @@ package com.noobanidus.variegated.proxy;
 import com.noobanidus.variegated.Variegated;
 import com.noobanidus.variegated.compat.bloodmagic.top.TOPHandler;
 import com.noobanidus.variegated.compat.botania.brew.Brews;
+import com.noobanidus.variegated.compat.botania.enchantment.EnchantmentManabound;
 import com.noobanidus.variegated.compat.top.TOPProvider;
 import com.noobanidus.variegated.compat.vanilla.handlers.MansionBiomeTypesHandler;
 import com.noobanidus.variegated.compat.vanilla.handlers.StackSizeEtcHandler;
@@ -21,6 +22,7 @@ public class CommonProxy implements ISidedProxy {
     }
 
     Brews.registerBrews();
+    EnchantmentManabound.registerEnchantment();
   }
 
   public void postInit(FMLPostInitializationEvent event) {
