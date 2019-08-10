@@ -6,9 +6,40 @@
   ],
   "type": "forge:ore_shaped",
   "key": {
-    "K": {
-      "type": "variegated:skull"
-    },
+    "K":
+      [
+        {
+          "item": "minecraft:skull",
+          "data": 0,
+          "count": 1
+        },
+        {
+          "item": "minecraft:skull",
+          "data": 1,
+          "count": 1
+        },
+        {
+          "item": "minecraft:skull",
+          "data": 2,
+          "count": 1
+        },
+        {
+          "item": "minecraft:skull",
+          "data": 3,
+          "count": 1
+        },
+        {
+          "item": "minecraft:skull",
+          "data": 4,
+          "count": 1
+        },
+        {
+          "item": "minecraft:skull",
+          "data": 5,
+          "count": 1
+        }
+      ]
+    ,
     "O": {
       "type": "forge:ore_dict",
       "ore": "obsidian"
