@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -46,13 +47,14 @@ public class CommandSimulate extends CommandBase {
 
 	@Override
 	public void execute (MinecraftServer server, ICommandSender sender, String[] args) {
+        sender.sendMessage(new TextComponentString("Beginning enchantment simulation..."));
 		List<String> output = new ArrayList<>();
 		List<Item> ironItems = Arrays.asList(Items.IRON_HELMET, Items.IRON_BOOTS, Items.IRON_CHESTPLATE, Items.IRON_LEGGINGS, Items.IRON_SWORD, Items.IRON_SHOVEL, Items.IRON_HOE, Items.IRON_AXE, Items.IRON_PICKAXE, Items.SHEARS, Items.SHIELD, Items.BOW, Items.ELYTRA, Items.FLINT_AND_STEEL, Items.FISHING_ROD, Items.TOTEM_OF_UNDYING);
 		List<Item> goldItems = Arrays.asList(Items.GOLDEN_HELMET, Items.GOLDEN_BOOTS, Items.GOLDEN_CHESTPLATE, Items.GOLDEN_LEGGINGS, Items.GOLDEN_SWORD, Items.GOLDEN_SHOVEL, Items.GOLDEN_HOE, Items.GOLDEN_AXE, Items.GOLDEN_PICKAXE);
 		List<Item> diamondItems = Arrays.asList(Items.DIAMOND_HELMET, Items.DIAMOND_BOOTS, Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS, Items.DIAMOND_SWORD, Items.DIAMOND_SHOVEL, Items.DIAMOND_HOE, Items.DIAMOND_AXE, Items.DIAMOND_PICKAXE);
 		int powerMin = 1;
 		int powerMax = 75;
-		int permutations = 100000;
+		int permutations = 10000;
 
 		output.add("----------------------------");
 		output.add("Iron items:");
@@ -69,6 +71,7 @@ public class CommandSimulate extends CommandBase {
 			Files.write(path, output, StandardCharsets.UTF_8);
 		} catch (IOException ignored) {
 		}
+        sender.sendMessage(new TextComponentString("Enchantment simulation complete!"));
 	}
 
 	private void simulate (List<Item> items, List<String> output, int powerMin, int powerMax, int permutations) {
