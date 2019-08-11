@@ -51,8 +51,8 @@ public class CommandSimulate extends CommandBase {
 		List<Item> goldItems = Arrays.asList(Items.GOLDEN_HELMET, Items.GOLDEN_BOOTS, Items.GOLDEN_CHESTPLATE, Items.GOLDEN_LEGGINGS, Items.GOLDEN_SWORD, Items.GOLDEN_SHOVEL, Items.GOLDEN_HOE, Items.GOLDEN_AXE, Items.GOLDEN_PICKAXE);
 		List<Item> diamondItems = Arrays.asList(Items.DIAMOND_HELMET, Items.DIAMOND_BOOTS, Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS, Items.DIAMOND_SWORD, Items.DIAMOND_SHOVEL, Items.DIAMOND_HOE, Items.DIAMOND_AXE, Items.DIAMOND_PICKAXE);
 		int powerMin = 1;
-		int powerMax = 200;
-		int permutations = 1000;
+		int powerMax = 75;
+		int permutations = 100000;
 
 		output.add("----------------------------");
 		output.add("Iron items:");
