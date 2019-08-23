@@ -1,6 +1,6 @@
 package com.noobanidus.variegated.proxy;
 
-import com.noobanidus.variegated.CommandSimulate;
+import com.noobanidus.variegated.commands.CommandSimulate;
 import com.noobanidus.variegated.Variegated;
 import com.noobanidus.variegated.compat.bloodmagic.top.TOPHandler;
 import com.noobanidus.variegated.compat.botania.brew.Brews;

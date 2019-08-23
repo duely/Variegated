@@ -1,4 +1,4 @@
-package com.noobanidus.variegated;
+package com.noobanidus.variegated.commands;
 
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
