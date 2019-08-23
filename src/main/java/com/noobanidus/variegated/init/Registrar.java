@@ -85,15 +85,7 @@ public class Registrar {
       public boolean hasEffect(ItemStack stack) {
         return false;
       }
-
-      @Override
-      public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        if (isInCreativeTab(tab)) {
-          items.add(new ItemStack(this, 1));
-        }
-        return;
-      }
-    }.setAlwaysEdible().setTranslationKey("silvered_apple").setRegistryName("variegated", "silvered_apple").setCreativeTab(Variegated.TAB);
+    }.setAlwaysEdible().setRegistryName("variegated", "silvered_apple").setCreativeTab(Variegated.TAB);
   }
 
   @SubscribeEvent
