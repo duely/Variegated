@@ -4,7 +4,9 @@ import com.noobanidus.variegated.compat.top.ITOPHandler;
 import com.noobanidus.variegated.init.Registrar;
 import com.noobanidus.variegated.proxy.ISidedProxy;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -28,7 +30,6 @@ public class Variegated {
   @SuppressWarnings("unused")
   public static final String KEY = "ca23084fc26ce53879eea4b7afb0a8d9da9744d7";
   public final static Logger LOG = LogManager.getLogger(MODID);
-  public final static Configuration CONFIG = new Configuration(new File("init", "variegated.cfg"), true);
   @SidedProxy(modId = MODID, clientSide = "com.noobanidus.variegated.proxy.ClientProxy", serverSide = "com.noobanidus.variegated.proxy.CommonProxy")
   public static ISidedProxy proxy;
 

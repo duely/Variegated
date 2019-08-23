@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class TrampleHandler {
   @SubscribeEvent
   public static void onTrampleEvent(BlockEvent.FarmlandTrampleEvent event) {
-    if (VariegatedConfig.cancelTrample) {
+    if (VariegatedConfig.vanillaSettings.cancelTrample) {
       event.setCanceled(true);
     }
   }

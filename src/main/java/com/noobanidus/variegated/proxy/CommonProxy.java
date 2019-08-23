@@ -45,7 +45,6 @@ public class CommonProxy implements ISidedProxy {
     StackSizeEtcHandler.init();
     MansionBiomeTypesHandler.init();
     Variegated.LOG.info("Variegated: Load Complete.");
-    Variegated.CONFIG.save();
   }
 
   public void serverStarting(FMLServerStartingEvent event) {

@@ -33,6 +33,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Objects;
+
 @SuppressWarnings("WeakerAccess")
 @Mod.EventBusSubscriber(modid = Variegated.MODID)
 public class Registrar {
@@ -126,10 +128,12 @@ public class Registrar {
       ModelLoader.setCustomModelResourceLocation(ib_compressed, 0, new ModelResourceLocation(new ResourceLocation("variegated", "compressed_vis_battery"), "inventory"));
     }
 
-    ModelLoader.setCustomModelResourceLocation(ib_defiled, 0, new ModelResourceLocation(defiled.getRegistryName(), "inventory"));
+    if (VariegatedConfig.DefiledGround.defiledGroundEnabled) {
+      ModelLoader.setCustomModelResourceLocation(ib_defiled, 0, new ModelResourceLocation(Objects.requireNonNull(defiled.getRegistryName()), "inventory"));
+    }
 
     if (Loader.isModLoaded("bloodmagic")) {
-      ModelLoader.setCustomModelResourceLocation(apple, 0, new ModelResourceLocation(apple.getRegistryName(), "inventory"));
+      ModelLoader.setCustomModelResourceLocation(apple, 0, new ModelResourceLocation(Objects.requireNonNull(apple.getRegistryName()), "inventory"));
     }
 
     ModelLoader.setCustomModelResourceLocation(silveredApple, 0, new ModelResourceLocation("variegated:food", "type=silveredApple"));
@@ -150,20 +154,22 @@ public class Registrar {
 
   @SubscribeEvent
   public static void registerPotionTypes(RegistryEvent.Register<PotionType> event) {
-    if (VariegatedConfig.fishermansBoon) {
-      boonI.setRegistryName(Variegated.MODID, "boon");
-      boonII.setRegistryName(Variegated.MODID, "boon2");
-      boonIII.setRegistryName(Variegated.MODID, "boon3");
-      attractionI.setRegistryName(Variegated.MODID, "attraction");
+    boonI.setRegistryName(Variegated.MODID, "boon");
+    boonII.setRegistryName(Variegated.MODID, "boon2");
+    boonIII.setRegistryName(Variegated.MODID, "boon3");
+    attractionI.setRegistryName(Variegated.MODID, "attraction");
 
+    if (VariegatedConfig.fishermansBoon) {
       event.getRegistry().register(boonI);
       event.getRegistry().register(boonII);
       event.getRegistry().register(boonIII);
-      event.getRegistry().register(attractionI);
-
       PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(Items.FISH, 1, ItemFishFood.FishType.COD.getMetadata())), boonI);
       PotionHelper.addMix(boonI, Ingredient.fromStacks(new ItemStack(Items.FISH, 1, ItemFishFood.FishType.CLOWNFISH.getMetadata())), boonII);
       PotionHelper.addMix(boonII, Items.EMERALD, boonIII);
+    }
+
+    if (VariegatedConfig.attraction) {
+      event.getRegistry().register(attractionI);
       PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromItem(Items.EMERALD), attractionI);
     }
   }

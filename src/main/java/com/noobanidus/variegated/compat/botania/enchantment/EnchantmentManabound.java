@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
 import java.util.Collections;
 
 public class EnchantmentManabound extends Enchantment {
-  public static void registerEnchantment () {
+  public static void registerEnchantment() {
     if (Loader.isModLoaded("botania")) {
       ItemStack book = new ItemStack(Items.BOOK);
       ItemStack rune = new ItemStack(ModItems.rune, 1, 8);

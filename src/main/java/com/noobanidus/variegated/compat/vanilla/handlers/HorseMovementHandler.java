@@ -26,7 +26,7 @@ public class HorseMovementHandler {
 
   @SubscribeEvent
   public static void onLeafEvent(GetCollisionBoxesEvent event) {
-    if (!VariegatedConfig.leafEnabled || event.getEntity() == null || !event.getEntity().isBeingRidden() || !(event.getEntity() instanceof AbstractHorse)) {
+    if (!VariegatedConfig.vanillaSettings.leafEnabled || event.getEntity() == null || !event.getEntity().isBeingRidden() || !(event.getEntity() instanceof AbstractHorse)) {
       return;
     }
 
@@ -44,7 +44,7 @@ public class HorseMovementHandler {
   @SideOnly(Side.CLIENT)
   @SubscribeEvent
   public static void onSwimEvent(TickEvent.ClientTickEvent event) {
-    if (!VariegatedConfig.swimmingEnabled || FMLClientHandler.instance().getClient().isGamePaused()) {
+    if (!VariegatedConfig.vanillaSettings.swimmingEnabled || FMLClientHandler.instance().getClient().isGamePaused()) {
       return;
     }
 

@@ -18,7 +18,9 @@ import java.util.List;
 
 public class MansionBiomeTypesHandler {
   public static void init() {
-    if (!VariegatedConfig.extraMansions) return;
+    if (!VariegatedConfig.vanillaSettings.extraMansions) {
+      return;
+    }
 
     try {
       modifyFields();

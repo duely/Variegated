@@ -14,5 +14,11 @@
     "C": {
       "item": "thaumcraft:vis_battery"
     }
-  }
+  },
+  "conditions": [
+    {
+      "type": "variegated:config",
+      "config": "compact"
+    }
+  ]
 }

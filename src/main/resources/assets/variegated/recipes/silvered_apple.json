@@ -19,5 +19,11 @@
       "item": "minecraft:apple",
       "data": 0
     }
-  }
+  },
+  "conditions": [
+    {
+      "type": "variegated:config",
+      "config": "apple"
+    }
+  ]
 }

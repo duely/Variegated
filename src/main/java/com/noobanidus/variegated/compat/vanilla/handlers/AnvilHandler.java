@@ -20,19 +20,23 @@ public class AnvilHandler {
   @SubscribeEvent
   public static void onAnvil(AnvilRepairEvent event) {
     clear(event.getItemResult());
-    if (VariegatedConfig.anvilBreakChance != -1) {
-      event.setBreakChance((float) VariegatedConfig.anvilBreakChance);
+    if (VariegatedConfig.vanillaSettings.anvilBreakChance != -1) {
+      event.setBreakChance((float) VariegatedConfig.vanillaSettings.anvilBreakChance);
     }
   }
 
   private static void clear(ItemStack... stacks) {
-    if (VariegatedConfig.anvilCostRemoval) {
+    if (VariegatedConfig.vanillaSettings.anvilCostRemoval) {
       for (ItemStack stack : stacks) {
-        if (stack.isEmpty()) return;
+        if (stack.isEmpty()) {
+          return;
+        }
 
         NBTTagCompound compound = stack.getTagCompound();
 
-        if (compound == null || !compound.hasKey("RepairCost")) return;
+        if (compound == null || !compound.hasKey("RepairCost")) {
+          return;
+        }
 
         compound.removeTag("RepairCost");
       }

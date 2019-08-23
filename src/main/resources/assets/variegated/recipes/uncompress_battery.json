@@ -11,5 +11,11 @@
     "#": {
       "item": "variegated:compressed_vis_battery"
     }
-  }
+  },
+  "conditions": [
+    {
+      "type": "variegated:config",
+      "config": "compact"
+    }
+  ]
 }

@@ -19,14 +19,20 @@ public class VillagerAgingHandler {
 
   @SubscribeEvent
   public static void onVillageInteract(PlayerInteractEvent.EntityInteract event) {
-    if (!VariegatedConfig.ageVillagers) return;
+    if (!VariegatedConfig.vanillaSettings.ageVillagers) {
+      return;
+    }
 
     ItemStack item = event.getItemStack();
 
-    if (item.isEmpty() || !(event.getTarget() instanceof EntityVillager)) return;
+    if (item.isEmpty() || !(event.getTarget() instanceof EntityVillager)) {
+      return;
+    }
 
     EntityPlayer player = event.getEntityPlayer();
-    if (player.world.isRemote) return;
+    if (player.world.isRemote) {
+      return;
+    }
 
     EntityVillager villager = (EntityVillager) event.getTarget();
 
@@ -34,7 +40,7 @@ public class VillagerAgingHandler {
       BlockPos pos = villager.getPos();
       ((WorldServer) villager.world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 2, 0, 0, 0, 0.5);
 
-      villager.addGrowth(VariegatedConfig.ageValue);
+      villager.addGrowth(VariegatedConfig.vanillaSettings.ageValue);
 
       if (!player.capabilities.isCreativeMode) {
         item.shrink(1);

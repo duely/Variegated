@@ -20,15 +20,17 @@ import java.util.Map;
 @Mod.EventBusSubscriber(modid = Variegated.MODID, value = Side.CLIENT)
 @SuppressWarnings("unused")
 public class OreHandler {
-  private static Map<Integer, List<String>> ORE_MAP = new Int2ObjectOpenHashMap<>();
+  private static Int2ObjectOpenHashMap<List<String>> ORE_MAP = new Int2ObjectOpenHashMap<>();
 
   @SubscribeEvent
   @SideOnly(Side.CLIENT)
   public static void onTooltip(ItemTooltipEvent event) {
-    if (VariegatedConfig.oredict) {
+    if (VariegatedConfig.vanillaSettings.oredict) {
       if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
         ItemStack item = event.getItemStack();
-        if (item.isEmpty()) return;
+        if (item.isEmpty()) {
+          return;
+        }
 
         int itemId = RecipeItemHelper.pack(item);
 

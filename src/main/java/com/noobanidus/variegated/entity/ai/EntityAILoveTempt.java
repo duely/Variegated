@@ -4,7 +4,6 @@ import com.noobanidus.variegated.init.Registrar;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class EntityAILoveTempt extends EntityAITempt {

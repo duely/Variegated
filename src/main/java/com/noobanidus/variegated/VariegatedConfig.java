@@ -15,163 +15,182 @@ public class VariegatedConfig {
     }
   }
 
-  @Config.Comment("Settings related to Defiled Ground")
-  @Config.Name("Defiled Ground")
-  public static DefiledGround DefiledGround = new DefiledGround();
-  @Config.Comment("Settings related to Blood Magic")
-  @Config.Name("Blood Magic")
-  public static BloodMagic BloodMagic = new BloodMagic();
-  @Config.Comment("Settings related to Botania")
-  @Config.Name("Botania")
-  public static Botania Botania = new Botania();
-  @Config.Comment("Settings related to Thaumcraft")
-  @Config.Name("Thaumcraft")
-  public static Thaumcraft Thaumcraft = new Thaumcraft();
   @Config.Comment("Enable the Fisherman's Boon potion")
   @Config.Name("Enable Fisherman's Boon")
   public static boolean fishermansBoon = true;
-  @Config.Comment("Break chance for Anvils (set to -1 to disable changing)")
-  @Config.Name("Anvil Break Chance")
-  public static double anvilBreakChance = 0.05d;
-  @Config.Comment("Clear repair cost of items processed by the anvil")
-  @Config.Name("Enable Cost Removal")
-  public static boolean anvilCostRemoval = true;
+
+  @Config.Comment("Enable the Attraction potion")
+  @Config.Name("Enable Attraction")
+  public static boolean attraction = true;
+
   @Config.Comment("Enable breeding horses with silver apples")
   @Config.Name("Enable Silver Apple breeding")
   public static boolean silverAppleBreeding = true;
-  @Config.Comment("Horses can traverse leaves without colliding")
-  @Config.Name("Horses walk through leaves")
-  public static boolean leafEnabled = true;
-  @Config.Comment("Horses 'swim' upwards while in water, preventing dismounting")
-  @Config.Name("Horses swim")
-  public static boolean swimmingEnabled = true;
-  @Config.Comment("Increase frequency of Woodland Mansion spawn by allowing it to spawn in additional biomes (Thaumcraft & Traverse forests and Vanilla forests)")
-  @Config.Name("Extra Mansion Biomes")
-  public static boolean extraMansions = true;
-  @Config.Comment("Print oreDict entries in item tooltips")
-  @Config.Name("OreDict Tooltips")
-  public static boolean oredict = false;
-  @Config.Comment("Increase size of cake stacks")
-  @Config.Name("Cake Stack Size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int cakeCount = 64;
-  @Config.Comment("Increase size of ender pearl stacks")
-  @Config.Name("Ender Pearl Stack Size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int enderCount = 64;
-  @Config.Comment("Increase size of snowball stacks")
-  @Config.Name("Snowball Stack Size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int snowballCount = 64;
-  @Config.Comment("Increase size of sign stacks")
-  @Config.Name("Sign Stack Size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int signCount = 64;
-  @Config.Comment("Increase size of enchanted book stacks")
-  @Config.Name("Enchanted Book Stack Size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int bookCount = 64;
-  @Config.Comment("Increase size of bucket stacks")
-  @Config.Name("Bucket stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int bucketCount = 64;
-  @Config.Comment("Increase size of egg stacks")
-  @Config.Name("Egg stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int eggCount = 64;
-  @Config.Comment("Increase size of written book stacks")
-  @Config.Name("Written book stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int writtenBookCount = 64;
-  @Config.Comment("Increase size of armor stand stacks")
-  @Config.Name("Armor stand stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int armorStandCount = 64;
-  @Config.Comment("Increase size of banner stacks")
-  @Config.Name("Banner stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int bannerCount = 64;
-  @Config.Comment("Increase size of minecart stacks")
-  @Config.Name("Minecart stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int minecartCount = 64;
-  @Config.Comment("Increase size of potion stacks")
-  @Config.Name("Potion stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int potionCount = 64;
-  @Config.Comment("Increase size of boat stacks")
-  @Config.Name("Boat stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int boatCount = 64;
-  @Config.Comment("Increase size of loot bag stacks [Thaumcraft only]")
-  @Config.Name("Loot bag stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int lootBagCount = 64;
-  @Config.Comment("Increase size of taint bottle stacks [Thaumcraft only]")
-  @Config.Name("Taint bottle stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int taintBottleCount = 64;
-  @Config.Comment("Increase size of causality collapser stacks [Thaumcraft only]")
-  @Config.Name("Causality collapser stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int causalityCount = 64;
-  @Config.Comment("Increase size of snare stacks [Blood Magic only]")
-  @Config.Name("Snare stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int snareCount = 64;
-  @Config.Comment("Increase the stack size of ender tears [EvilCraft only]")
-  @Config.Name("Ender Tear stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int enderTearCount = 64;
-  @Config.Comment("Increase the stack size of werewolf flesh [EvilCraft only]")
-  @Config.Name("Werewolf flesh stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int werewolfCount = 64;
-  @Config.Comment("Increase the stack size of lightning grenades [EvilCraft only]")
-  @Config.Name("Lightning grenade stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int lightningCount = 64;
-  @Config.Comment("Increase the stack size of redstone grenades [EvilCraft only]")
-  @Config.Name("Redstone grenade stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int redstoneCount = 64;
-  @Config.Comment("Increase the stack size of dark power gems [EvilCraft only]")
-  @Config.Name("Dark power gem stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int darkPowerCount = 64;
-  @Config.Comment("Increase the stack size of inverted potentia [EvilCraft only]")
-  @Config.Name("Inverted potentia stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int potentiaCount = 64;
-  @Config.Comment("Increase the stack size of coins [Treasure2! only]")
-  @Config.Name("Coin stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int coinCount = 64;
-  @Config.Comment("Increase the stack size of tea cups [SimplyTea only]")
-  @Config.Name("Tea cup stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int cupCount = 64;
-  @Config.Comment("Increase the stack size of soul vials [EnderIO only]")
-  @Config.Name("Soul vial stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int soulVialCount = 64;
-  @Config.Comment("Increase the stack size of combustive cod [Combustive Fishing only]")
-  @Config.Name("Combustive cod stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int codCount = 64;
-  @Config.Comment("Increase the stack size of lenses [Astral Sorcery only]")
-  @Config.Name("Lens stack size")
-  @Config.RangeInt(min = 1, max = 64)
-  public static int lensCount = 64;
-  @Config.Comment("Cancel trampling events for crops and farmland")
-  @Config.Name("Cancel Trample")
-  public static boolean cancelTrample = true;
-  @Config.Comment("Age baby villagers with emeralds")
-  @Config.Name("Baby Villager Aging")
-  public static boolean ageVillagers = true;
-  @Config.Comment("Value to age villagers by per emerald")
-  @Config.Name("Baby Villager Age Value")
-  public static int ageValue = 240;
+
+  @Config.Comment("Options relating to the stack sizes of various items")
+  @Config.Name("Stack Size")
+  public static StackSizes stackSizes = new StackSizes();
+
+  public static class StackSizes {
+    @Config.Comment("Increase size of cake stacks")
+    @Config.Name("Cake Stack Size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int cakeCount = 64;
+    @Config.Comment("Increase size of ender pearl stacks")
+    @Config.Name("Ender Pearl Stack Size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int enderCount = 64;
+    @Config.Comment("Increase size of snowball stacks")
+    @Config.Name("Snowball Stack Size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int snowballCount = 64;
+    @Config.Comment("Increase size of sign stacks")
+    @Config.Name("Sign Stack Size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int signCount = 64;
+    @Config.Comment("Increase size of enchanted book stacks")
+    @Config.Name("Enchanted Book Stack Size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int bookCount = 64;
+    @Config.Comment("Increase size of bucket stacks")
+    @Config.Name("Bucket stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int bucketCount = 64;
+    @Config.Comment("Increase size of egg stacks")
+    @Config.Name("Egg stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int eggCount = 64;
+    @Config.Comment("Increase size of written book stacks")
+    @Config.Name("Written book stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int writtenBookCount = 64;
+    @Config.Comment("Increase size of armor stand stacks")
+    @Config.Name("Armor stand stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int armorStandCount = 64;
+    @Config.Comment("Increase size of banner stacks")
+    @Config.Name("Banner stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int bannerCount = 64;
+    @Config.Comment("Increase size of minecart stacks")
+    @Config.Name("Minecart stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int minecartCount = 64;
+    @Config.Comment("Increase size of potion stacks")
+    @Config.Name("Potion stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int potionCount = 64;
+    @Config.Comment("Increase size of boat stacks")
+    @Config.Name("Boat stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int boatCount = 64;
+    @Config.Comment("Increase size of loot bag stacks [Thaumcraft only]")
+    @Config.Name("Loot bag stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int lootBagCount = 64;
+    @Config.Comment("Increase size of taint bottle stacks [Thaumcraft only]")
+    @Config.Name("Taint bottle stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int taintBottleCount = 64;
+    @Config.Comment("Increase size of causality collapser stacks [Thaumcraft only]")
+    @Config.Name("Causality collapser stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int causalityCount = 64;
+    @Config.Comment("Increase size of snare stacks [Blood Magic only]")
+    @Config.Name("Snare stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int snareCount = 64;
+    @Config.Comment("Increase the stack size of ender tears [EvilCraft only]")
+    @Config.Name("Ender Tear stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int enderTearCount = 64;
+    @Config.Comment("Increase the stack size of werewolf flesh [EvilCraft only]")
+    @Config.Name("Werewolf flesh stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int werewolfCount = 64;
+    @Config.Comment("Increase the stack size of lightning grenades [EvilCraft only]")
+    @Config.Name("Lightning grenade stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int lightningCount = 64;
+    @Config.Comment("Increase the stack size of redstone grenades [EvilCraft only]")
+    @Config.Name("Redstone grenade stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int redstoneCount = 64;
+    @Config.Comment("Increase the stack size of dark power gems [EvilCraft only]")
+    @Config.Name("Dark power gem stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int darkPowerCount = 64;
+    @Config.Comment("Increase the stack size of inverted potentia [EvilCraft only]")
+    @Config.Name("Inverted potentia stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int potentiaCount = 64;
+    @Config.Comment("Increase the stack size of coins [Treasure2! only]")
+    @Config.Name("Coin stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int coinCount = 64;
+    @Config.Comment("Increase the stack size of tea cups [SimplyTea only]")
+    @Config.Name("Tea cup stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int cupCount = 64;
+    @Config.Comment("Increase the stack size of soul vials [EnderIO only]")
+    @Config.Name("Soul vial stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int soulVialCount = 64;
+    @Config.Comment("Increase the stack size of combustive cod [Combustive Fishing only]")
+    @Config.Name("Combustive cod stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int codCount = 64;
+    @Config.Comment("Increase the stack size of lenses [Astral Sorcery only]")
+    @Config.Name("Lens stack size")
+    @Config.RangeInt(min = 1, max = 64)
+    public int lensCount = 64;
+  }
+
+  @Config.Comment("Settings related to Vanilla")
+  @Config.Name("Vanilla Settings")
+  public static VanillaSettings vanillaSettings = new VanillaSettings();
+
+  public static class VanillaSettings {
+    @Config.Comment("Break chance for Anvils (set to -1 to disable changing)")
+    @Config.Name("Anvil Break Chance")
+    public double anvilBreakChance = 0.05d;
+
+    @Config.Comment("Clear repair cost of items processed by the anvil")
+    @Config.Name("Enable Cost Removal")
+    public boolean anvilCostRemoval = true;
+
+    @Config.Comment("Horses can traverse leaves without colliding")
+    @Config.Name("Horses walk through leaves")
+    public boolean leafEnabled = true;
+
+    @Config.Comment("Horses 'swim' upwards while in water, preventing dismounting")
+    @Config.Name("Horses swim")
+    public boolean swimmingEnabled = true;
+
+    @Config.Comment("Increase frequency of Woodland Mansion spawn by allowing it to spawn in additional biomes (Thaumcraft & Traverse forests and Vanilla forests)")
+    @Config.Name("Extra Mansion Biomes")
+    public boolean extraMansions = true;
+
+    @Config.Comment("Print oreDict entries in item tooltips")
+    @Config.Name("OreDict Tooltips")
+    public boolean oredict = false;
+
+    @Config.Comment("Cancel trampling events for crops and farmland")
+    @Config.Name("Cancel Trample")
+    public boolean cancelTrample = true;
+
+    @Config.Comment("Age baby villagers with emeralds")
+    @Config.Name("Baby Villager Aging")
+    public boolean ageVillagers = true;
+
+    @Config.Comment("Value to age villagers by per emerald")
+    @Config.Name("Baby Villager Age Value")
+    public int ageValue = 240;
+  }
+
+  @Config.Comment("Settings related to Defiled Ground")
+  @Config.Name("Defiled Ground")
+  public static DefiledGround DefiledGround = new DefiledGround();
 
   public static class DefiledGround {
     @Config.Comment("Enabled defiled ground's functionality; if disabled, it is still craftable, but does nothing.")
@@ -225,6 +244,10 @@ public class VariegatedConfig {
     public int tickVarianceAmount = 100;
   }
 
+  @Config.Comment("Settings related to Blood Magic")
+  @Config.Name("Blood Magic")
+  public static BloodMagic BloodMagic = new BloodMagic();
+
   public static class BloodMagic {
     @Config.Comment("Automatically create a platform for the meteor to land on.")
     @Config.Name("Meteor platform")
@@ -234,6 +257,10 @@ public class VariegatedConfig {
     @Config.Name("Platform Height")
     public int y = 24;
   }
+
+  @Config.Comment("Settings related to Botania")
+  @Config.Name("Botania")
+  public static Botania Botania = new Botania();
 
   public static class Botania {
     @Config.Comment("Mana cost of the 'Wings' flight brew.")
@@ -249,9 +276,14 @@ public class VariegatedConfig {
     public int manaCost = 370;
   }
 
+  @Config.Comment("Settings related to Thaumcraft")
+  @Config.Name("Thaumcraft")
+  public static Thaumcraft Thaumcraft = new Thaumcraft();
+
   public static class Thaumcraft {
     @Config.Comment("Enable the Compressed Vis Battery, storing and restoring more to the aura.")
     @Config.Name("Enable Compressed Vis Battery")
     public boolean enabled = true;
   }
 }
+
