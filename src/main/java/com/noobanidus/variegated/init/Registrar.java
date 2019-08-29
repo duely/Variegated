@@ -3,16 +3,19 @@ package com.noobanidus.variegated.init;
 import com.noobanidus.variegated.Variegated;
 import com.noobanidus.variegated.VariegatedConfig;
 import com.noobanidus.variegated.blocks.BlockDefiledGround;
+import com.noobanidus.variegated.blocks.BlockFeatherweight;
 import com.noobanidus.variegated.compat.bloodmagic.items.BloodApple;
 import com.noobanidus.variegated.compat.botania.enchantment.EnchantmentManabound;
 import com.noobanidus.variegated.compat.thaumcraft.blocks.BlockCompressedVisBattery;
 import com.noobanidus.variegated.potions.PotionBoon;
 import com.noobanidus.variegated.potions.PotionLove;
+import com.noobanidus.variegated.potions.PotionWings;
 import com.noobanidus.variegated.tileentities.TileEntityDefiledGround;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.item.*;
@@ -44,6 +47,9 @@ public class Registrar {
   public static Block defiled = null;
   public static ItemBlock ib_defiled = null;
 
+  public static Block featherweight = null;
+  public static ItemBlock ib_featherweight = null;
+
   public static Item apple = null;
 
   public static Enchantment manabound = null;
@@ -59,6 +65,9 @@ public class Registrar {
 
   public static Potion attraction = new PotionLove();
   public static PotionType attractionI = new PotionType("attraction", new PotionEffect(attraction, 10 * 20));
+
+  public static Potion wings = new PotionWings();
+  public static PotionType wingsI = new PotionType("wings", new PotionEffect(wings, 3000));
 
   @SuppressWarnings("ConstantConditions")
   public static void preInit() {
@@ -80,6 +89,10 @@ public class Registrar {
     ib_defiled = new ItemBlock(defiled);
     ib_defiled.setRegistryName(defiled.getRegistryName());
 
+    featherweight = new BlockFeatherweight();
+    ib_featherweight = new BlockFeatherweight.ItemBlockFeatherweight(featherweight);
+    ib_featherweight.setRegistryName(featherweight.getRegistryName());
+
     silveredApple = new ItemAppleGold(4, 1.2f, false) {
       @Override
       public boolean hasEffect(ItemStack stack) {
@@ -95,6 +108,7 @@ public class Registrar {
     }
 
     event.getRegistry().register(defiled);
+    event.getRegistry().register(featherweight);
 
     GameRegistry.registerTileEntity(TileEntityDefiledGround.class, new ResourceLocation(Variegated.MODID, "defiled_ground"));
   }
@@ -111,6 +125,7 @@ public class Registrar {
 
     event.getRegistry().register(silveredApple);
     event.getRegistry().register(ib_defiled);
+    event.getRegistry().register(ib_featherweight);
   }
 
   @SideOnly(Side.CLIENT)
@@ -120,9 +135,8 @@ public class Registrar {
       ModelLoader.setCustomModelResourceLocation(ib_compressed, 0, new ModelResourceLocation(new ResourceLocation("variegated", "compressed_vis_battery"), "inventory"));
     }
 
-    if (VariegatedConfig.DefiledGround.defiledGroundEnabled) {
-      ModelLoader.setCustomModelResourceLocation(ib_defiled, 0, new ModelResourceLocation(Objects.requireNonNull(defiled.getRegistryName()), "inventory"));
-    }
+    ModelLoader.setCustomModelResourceLocation(ib_defiled, 0, new ModelResourceLocation(Objects.requireNonNull(defiled.getRegistryName()), "inventory"));
+    ModelLoader.setCustomModelResourceLocation(ib_featherweight, 0, new ModelResourceLocation(Objects.requireNonNull(featherweight.getRegistryName()), "inventory"));
 
     if (Loader.isModLoaded("bloodmagic")) {
       ModelLoader.setCustomModelResourceLocation(apple, 0, new ModelResourceLocation(Objects.requireNonNull(apple.getRegistryName()), "inventory"));
@@ -142,6 +156,7 @@ public class Registrar {
   public static void registerPotions(RegistryEvent.Register<Potion> event) {
     event.getRegistry().register(boon);
     event.getRegistry().register(attraction);
+    event.getRegistry().register(wings);
   }
 
   @SubscribeEvent
@@ -150,6 +165,7 @@ public class Registrar {
     boonII.setRegistryName(Variegated.MODID, "boon2");
     boonIII.setRegistryName(Variegated.MODID, "boon3");
     attractionI.setRegistryName(Variegated.MODID, "attraction");
+    wingsI.setRegistryName(Variegated.MODID, "wings");
 
     if (VariegatedConfig.fishermansBoon) {
       event.getRegistry().register(boonI);
@@ -163,6 +179,11 @@ public class Registrar {
     if (VariegatedConfig.attraction) {
       event.getRegistry().register(attractionI);
       PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromItem(Items.EMERALD), attractionI);
+    }
+
+    if (VariegatedConfig.wings) {
+      event.getRegistry().register(wingsI);
+      PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromItem(Item.getItemFromBlock(Blocks.GOLD_BLOCK)), wingsI);
     }
   }
 }

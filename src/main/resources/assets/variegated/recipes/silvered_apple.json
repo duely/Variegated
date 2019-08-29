@@ -23,7 +23,7 @@
   "conditions": [
     {
       "type": "variegated:config",
-      "config": "apple"
+      "recipe": "apple"
     }
   ]
 }

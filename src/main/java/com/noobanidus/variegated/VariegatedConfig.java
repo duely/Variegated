@@ -23,6 +23,10 @@ public class VariegatedConfig {
   @Config.Name("Enable Attraction")
   public static boolean attraction = true;
 
+  @Config.Comment("Enable the Wings potion")
+  @Config.Name("Enable Wings")
+  public static boolean wings = true;
+
   @Config.Comment("Enable breeding horses with silver apples")
   @Config.Name("Enable Silver Apple breeding")
   public static boolean silverAppleBreeding = true;
@@ -30,6 +34,10 @@ public class VariegatedConfig {
   @Config.Comment("Allow ender portal frames to be broken in survival")
   @Config.Name("Breakable Ender Portal Frames")
   public static boolean breakableFrames = true;
+
+  @Config.Comment("Allow the create of a featherweight block")
+  @Config.Name("Enable featherweight")
+  public static boolean enableFeatherweight = true;
 
   @Config.Comment("Options relating to the stack sizes of various items")
   @Config.Name("Stack Size")

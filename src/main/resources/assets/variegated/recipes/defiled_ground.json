@@ -50,5 +50,11 @@
   },
   "result": {
     "item": "variegated:defiled_ground"
-  }
+  },
+  "conditions": [
+    {
+      "type": "variegated:config",
+      "recipe": "defiled"
+    }
+  ]
 }

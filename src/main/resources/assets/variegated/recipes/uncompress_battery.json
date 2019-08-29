@@ -15,7 +15,7 @@
   "conditions": [
     {
       "type": "variegated:config",
-      "config": "compact"
+      "recipe": "compact"
     }
   ]
 }

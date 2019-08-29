@@ -1,0 +1,27 @@
+{
+  "pattern": [
+    "FFF",
+    "FWF",
+    "FFF"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "F": {
+      "type": "forge:ore_dict",
+      "ore": "feather"
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore":  "wool"
+    }
+  },
+  "result": {
+    "item": "variegated:featherweight"
+  },
+  "conditions": [
+    {
+      "type": "variegated:config",
+      "recipe": "featherweight"
+    }
+  ]
+}
