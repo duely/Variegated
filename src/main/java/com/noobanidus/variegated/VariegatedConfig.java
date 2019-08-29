@@ -312,7 +312,7 @@ public class VariegatedConfig {
   public static class ExoticBirds {
     @Config.Comment("Enable modification of Exotic Birds pack sizes")
     @Config.Name("Modify exotic birds pack sizes")
-    public boolean enable = true;
+    public boolean enable = false;
 
     @Config.Comment("Set maximum pack size to this value")
     @Config.Name("Maximum pack size")
