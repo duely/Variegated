@@ -304,5 +304,25 @@ public class VariegatedConfig {
     @Config.Name("Replace Porous Stone")
     public boolean replacePorous = false;
   }
+
+  @Config.Comment("Settings related to Exotic Birds")
+  @Config.Name("Exotic Birds")
+  public static ExoticBirds ExoticBirds = new ExoticBirds();
+
+  public static class ExoticBirds {
+    @Config.Comment("Enable modification of Exotic Birds pack sizes")
+    @Config.Name("Modify exotic birds pack sizes")
+    public boolean enable = true;
+
+    @Config.Comment("Set maximum pack size to this value")
+    @Config.Name("Maximum pack size")
+    @Config.RangeInt(min=1, max=100)
+    public int maxPackSize = 2;
+
+    @Config.Comment("Set minimum pack size to this value")
+    @Config.Name("Minimum pack size")
+    @Config.RangeInt(min=1, max=100)
+    public int minPackSize = 1;
+  }
 }
 

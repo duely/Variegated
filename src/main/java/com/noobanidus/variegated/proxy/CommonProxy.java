@@ -1,11 +1,13 @@
 package com.noobanidus.variegated.proxy;
 
+import com.noobanidus.variegated.VariegatedConfig;
 import com.noobanidus.variegated.commands.CommandInfo;
 import com.noobanidus.variegated.commands.CommandSimulate;
 import com.noobanidus.variegated.Variegated;
 import com.noobanidus.variegated.compat.bloodmagic.top.TOPHandler;
 import com.noobanidus.variegated.compat.botania.brew.Brews;
 import com.noobanidus.variegated.compat.botania.enchantment.EnchantmentManabound;
+import com.noobanidus.variegated.compat.exotic_birds.ReducePackSize;
 import com.noobanidus.variegated.compat.top.TOPProvider;
 import com.noobanidus.variegated.compat.vanilla.handlers.MansionBiomeTypesHandler;
 import com.noobanidus.variegated.compat.StackSizeEtcHandler;
@@ -47,6 +49,9 @@ public class CommonProxy implements ISidedProxy {
   public void loadComplete(FMLLoadCompleteEvent event) {
     StackSizeEtcHandler.init();
     MansionBiomeTypesHandler.init();
+    if (Loader.isModLoaded("exoticbirds") && VariegatedConfig.ExoticBirds.enable) {
+      ReducePackSize.init();
+    }
     Variegated.LOG.info("Variegated: Load Complete.");
   }
 
