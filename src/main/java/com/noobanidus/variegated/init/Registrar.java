@@ -151,11 +151,14 @@ public class Registrar {
   public static void registerModels(ModelRegistryEvent event) {
     if (VariegatedConfig.Thaumcraft.enabled && Loader.isModLoaded("thaumcraft")) {
       ModelLoader.setCustomModelResourceLocation(ib_compressed, 0, new ModelResourceLocation(new ResourceLocation("variegated", "compressed_vis_battery"), "inventory"));
+      if (VariegatedConfig.Thaumcraft.replacePorous) {
+        ModelLoader.setCustomModelResourceLocation(ib_porous, 0, new ModelResourceLocation(Objects.requireNonNull(porous.getRegistryName()), "inventory"));
+      }
     }
 
     ModelLoader.setCustomModelResourceLocation(ib_defiled, 0, new ModelResourceLocation(Objects.requireNonNull(defiled.getRegistryName()), "inventory"));
     ModelLoader.setCustomModelResourceLocation(ib_featherweight, 0, new ModelResourceLocation(Objects.requireNonNull(featherweight.getRegistryName()), "inventory"));
-    ModelLoader.setCustomModelResourceLocation(ib_porous, 0, new ModelResourceLocation(Objects.requireNonNull(porous.getRegistryName()), "inventory"));
+
 
     if (Loader.isModLoaded("bloodmagic")) {
       ModelLoader.setCustomModelResourceLocation(apple, 0, new ModelResourceLocation(Objects.requireNonNull(apple.getRegistryName()), "inventory"));
