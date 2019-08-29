@@ -1,5 +1,6 @@
 package com.noobanidus.variegated.proxy;
 
+import com.noobanidus.variegated.commands.CommandInfo;
 import com.noobanidus.variegated.commands.CommandSimulate;
 import com.noobanidus.variegated.Variegated;
 import com.noobanidus.variegated.compat.bloodmagic.top.TOPHandler;
@@ -9,12 +10,14 @@ import com.noobanidus.variegated.compat.top.TOPProvider;
 import com.noobanidus.variegated.compat.vanilla.handlers.MansionBiomeTypesHandler;
 import com.noobanidus.variegated.compat.StackSizeEtcHandler;
 import com.noobanidus.variegated.init.Registrar;
+import com.noobanidus.variegated.network.Networking;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 
 public class CommonProxy implements ISidedProxy {
   public void preInit(FMLPreInitializationEvent event) {
     Registrar.preInit();
+    Networking.register();
   }
 
   public void init(FMLInitializationEvent event) {
@@ -49,6 +52,7 @@ public class CommonProxy implements ISidedProxy {
 
   public void serverStarting(FMLServerStartingEvent event) {
     event.registerServerCommand(new CommandSimulate());
+    event.registerServerCommand(new CommandInfo());
   }
 
   public void serverStarted(FMLServerStartedEvent event) {
