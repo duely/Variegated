@@ -1,4 +1,4 @@
-package com.noobanidus.variegated.compat.vanilla.handlers;
+package com.noobanidus.variegated.compat;
 
 import com.noobanidus.variegated.Variegated;
 import com.noobanidus.variegated.VariegatedConfig;
@@ -11,7 +11,9 @@ import net.minecraftforge.fml.common.Loader;
 @SuppressWarnings("deprecation")
 public class StackSizeEtcHandler {
   public static void init() {
-    Blocks.END_PORTAL_FRAME.setHardness(50.0F).setResistance(2000.0F).setHarvestLevel("pickaxe", 3);
+    if (VariegatedConfig.breakableFrames) {
+      Blocks.END_PORTAL_FRAME.setHardness(50.0F).setResistance(2000.0F).setHarvestLevel("pickaxe", 3);
+    }
 
     int cakeCount = VariegatedConfig.stackSizes.cakeCount;
     if (cakeCount <= 64 && cakeCount > 0) {
@@ -232,11 +234,13 @@ public class StackSizeEtcHandler {
       }
     }
 
-    Item.REGISTRY.forEach((item) -> {
-      int size = item.getItemStackLimit();
-      if (size > 1 && size < 64) {
-        Variegated.LOG.info(item.getRegistryName().toString() + ": stack size " + size);
-      }
-    });
+    if (VariegatedConfig.stackSizes.logStackSizes) {
+      Item.REGISTRY.forEach((item) -> {
+        int size = item.getItemStackLimit();
+        if (size > 1 && size < 64) {
+          Variegated.LOG.info(item.getRegistryName().toString() + ": stack size " + size);
+        }
+      });
+    }
   }
 }

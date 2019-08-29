@@ -7,7 +7,7 @@ import com.noobanidus.variegated.compat.botania.brew.Brews;
 import com.noobanidus.variegated.compat.botania.enchantment.EnchantmentManabound;
 import com.noobanidus.variegated.compat.top.TOPProvider;
 import com.noobanidus.variegated.compat.vanilla.handlers.MansionBiomeTypesHandler;
-import com.noobanidus.variegated.compat.vanilla.handlers.StackSizeEtcHandler;
+import com.noobanidus.variegated.compat.StackSizeEtcHandler;
 import com.noobanidus.variegated.init.Registrar;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
