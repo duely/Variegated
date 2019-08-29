@@ -6,6 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -16,6 +18,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
+@SuppressWarnings("deprecation")
 public class BlockFeatherweight extends Block {
   public BlockFeatherweight() {
     super(Material.CLOTH);
@@ -31,6 +36,16 @@ public class BlockFeatherweight extends Block {
     if (!worldIn.isRemote && !player.capabilities.isCreativeMode) {
       player.addItemStackToInventory(new ItemStack(this));
     }
+  }
+
+  @Override
+  public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    return Items.AIR;
+  }
+
+  @Override
+  public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+    return ItemStack.EMPTY;
   }
 
   public static class ItemBlockFeatherweight extends ItemBlock {

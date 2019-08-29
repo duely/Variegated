@@ -299,6 +299,10 @@ public class VariegatedConfig {
     @Config.Comment("Enable the Compressed Vis Battery, storing and restoring more to the aura.")
     @Config.Name("Enable Compressed Vis Battery")
     public boolean enabled = true;
+
+    @Config.Comment("Enable the porous stone replacement")
+    @Config.Name("Replace Porous Stone")
+    public boolean replacePorous = false;
   }
 }
 

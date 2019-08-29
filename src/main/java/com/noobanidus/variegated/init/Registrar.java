@@ -7,6 +7,7 @@ import com.noobanidus.variegated.blocks.BlockFeatherweight;
 import com.noobanidus.variegated.compat.bloodmagic.items.BloodApple;
 import com.noobanidus.variegated.compat.botania.enchantment.EnchantmentManabound;
 import com.noobanidus.variegated.compat.thaumcraft.blocks.BlockCompressedVisBattery;
+import com.noobanidus.variegated.compat.thaumcraft.blocks.BlockStonePorousReplacement;
 import com.noobanidus.variegated.potions.PotionBoon;
 import com.noobanidus.variegated.potions.PotionLove;
 import com.noobanidus.variegated.potions.PotionWings;
@@ -50,6 +51,9 @@ public class Registrar {
   public static Block featherweight = null;
   public static ItemBlock ib_featherweight = null;
 
+  public static Block porous = null;
+  public static ItemBlock ib_porous = null;
+
   public static Item apple = null;
 
   public static Enchantment manabound = null;
@@ -83,6 +87,12 @@ public class Registrar {
       compressed = new BlockCompressedVisBattery();
       ib_compressed = new ItemBlock(compressed);
       ib_compressed.setRegistryName(compressed.getRegistryName());
+
+      if (VariegatedConfig.Thaumcraft.replacePorous) {
+        porous = new BlockStonePorousReplacement();
+        ib_porous = new ItemBlock(porous);
+        ib_porous.setRegistryName(porous.getRegistryName());
+      }
     }
 
     defiled = new BlockDefiledGround();
@@ -105,6 +115,10 @@ public class Registrar {
   public static void registerBlocks(RegistryEvent.Register<Block> event) {
     if (VariegatedConfig.Thaumcraft.enabled && Loader.isModLoaded("thaumcraft")) {
       event.getRegistry().register(compressed);
+
+      if (VariegatedConfig.Thaumcraft.replacePorous) {
+        event.getRegistry().register(porous);
+      }
     }
 
     event.getRegistry().register(defiled);
@@ -117,6 +131,10 @@ public class Registrar {
   public static void registerItems(RegistryEvent.Register<Item> event) {
     if (VariegatedConfig.Thaumcraft.enabled && Loader.isModLoaded("thaumcraft")) {
       event.getRegistry().register(ib_compressed);
+
+      if (VariegatedConfig.Thaumcraft.replacePorous) {
+        event.getRegistry().register(ib_porous);
+      }
     }
 
     if (Loader.isModLoaded("bloodmagic")) {
@@ -137,6 +155,7 @@ public class Registrar {
 
     ModelLoader.setCustomModelResourceLocation(ib_defiled, 0, new ModelResourceLocation(Objects.requireNonNull(defiled.getRegistryName()), "inventory"));
     ModelLoader.setCustomModelResourceLocation(ib_featherweight, 0, new ModelResourceLocation(Objects.requireNonNull(featherweight.getRegistryName()), "inventory"));
+    ModelLoader.setCustomModelResourceLocation(ib_porous, 0, new ModelResourceLocation(Objects.requireNonNull(porous.getRegistryName()), "inventory"));
 
     if (Loader.isModLoaded("bloodmagic")) {
       ModelLoader.setCustomModelResourceLocation(apple, 0, new ModelResourceLocation(Objects.requireNonNull(apple.getRegistryName()), "inventory"));
