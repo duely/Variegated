@@ -6,12 +6,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.fml.common.Loader;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.brew.Brew;
 
 public class Brews {
   public static void registerBrews() {
-    if (VariegatedConfig.wings) {
+    if (VariegatedConfig.wings && Loader.isModLoaded("botania")) {
       Brew flight_brew = new Brew("flight", "variegated.brew.Wings", 0x99ffff, VariegatedConfig.Botania.WingsCost, new PotionEffect(Registrar.wings, 6000));
       flight_brew.setNotBloodPendantInfusable();
 
