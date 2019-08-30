@@ -324,5 +324,15 @@ public class VariegatedConfig {
     @Config.RangeInt(min=1, max=100)
     public int minPackSize = 1;
   }
+
+  @Config.Comment("Settings related to Mob Mash")
+  @Config.Name("Mob Mash")
+  public static MobMash MobMash = new MobMash();
+
+  public static class MobMash {
+    @Config.Comment("Disable Mob Mash's injection of weapons into loot tables")
+    @Config.Name("Disable loot injection")
+    public boolean disableLoot = true;
+  }
 }
 
