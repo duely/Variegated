@@ -7,14 +7,13 @@ import com.noobanidus.variegated.blocks.BlockFeatherweight;
 import com.noobanidus.variegated.compat.bloodmagic.items.BloodApple;
 import com.noobanidus.variegated.compat.botania.enchantment.EnchantmentManabound;
 import com.noobanidus.variegated.compat.thaumcraft.blocks.BlockCompressedVisBattery;
-import com.noobanidus.variegated.compat.thaumcraft.blocks.BlockStonePorousReplacement;
+import com.noobanidus.variegated.compat.thaumcraft.blocks.PorousStoneProvider;
 import com.noobanidus.variegated.potions.PotionBoon;
 import com.noobanidus.variegated.potions.PotionLove;
 import com.noobanidus.variegated.potions.PotionWings;
 import com.noobanidus.variegated.tileentities.TileEntityDefiledGround;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -25,7 +24,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.potion.PotionType;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -90,7 +88,7 @@ public class Registrar {
       ib_compressed.setRegistryName(compressed.getRegistryName());
 
       if (VariegatedConfig.Thaumcraft.replacePorous) {
-        porous = new BlockStonePorousReplacement();
+        porous = PorousStoneProvider.provide();
         ib_porous = new ItemBlock(porous);
         ib_porous.setRegistryName(porous.getRegistryName());
       }
@@ -109,7 +107,7 @@ public class Registrar {
       public boolean hasEffect(ItemStack stack) {
         return false;
       }
-    }.setAlwaysEdible().setRegistryName("variegated", "silvered_apple").setCreativeTab(Variegated.TAB);
+    }.setAlwaysEdible().setRegistryName(Variegated.MODID, "silvered_apple").setCreativeTab(Variegated.TAB);
   }
 
   @SubscribeEvent

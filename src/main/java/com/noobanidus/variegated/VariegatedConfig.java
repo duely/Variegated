@@ -256,7 +256,7 @@ public class VariegatedConfig {
 
     @Config.Comment("Set to the number of ticks to randomly add (or subtract) from the next spawn")
     @Config.Name("Tick variance")
-    public int tickVarianceAmount = 100;
+    public int tickVarianceAmount = 30;
   }
 
   @Config.Comment("Settings related to Blood Magic")
@@ -271,6 +271,10 @@ public class VariegatedConfig {
     @Config.Comment("Y level to place the platform at (requires Meteor platform enabled)")
     @Config.Name("Platform Height")
     public int y = 24;
+
+    @Config.Comment("Reduce or increase the duration in ticks required for Hellfire Forge's operations (default 100)")
+    @Config.Name("Hellfire Forge Speed")
+    public int hellfireSpeed = 20;
   }
 
   @Config.Comment("Settings related to Botania")
