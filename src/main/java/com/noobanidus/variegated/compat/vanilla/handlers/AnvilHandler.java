@@ -1,13 +1,13 @@
 package com.noobanidus.variegated.compat.vanilla.handlers;
 
 import com.noobanidus.variegated.Variegated;
-import com.noobanidus.variegated.VariegatedConfig;
+import com.noobanidus.variegated.ConfigManager;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber(modid = Variegated.MODID)
 @SuppressWarnings("unused")
@@ -20,25 +20,25 @@ public class AnvilHandler {
   @SubscribeEvent
   public static void onAnvil(AnvilRepairEvent event) {
     clear(event.getItemResult());
-    if (VariegatedConfig.vanillaSettings.anvilBreakChance != -1) {
-      event.setBreakChance((float) VariegatedConfig.vanillaSettings.anvilBreakChance);
+    if (ConfigManager.vanillaSettings.anvilBreakChance != -1) {
+      event.setBreakChance((float) ConfigManager.vanillaSettings.anvilBreakChance);
     }
   }
 
   private static void clear(ItemStack... stacks) {
-    if (VariegatedConfig.vanillaSettings.anvilCostRemoval) {
+    if (ConfigManager.vanillaSettings.anvilCostRemoval) {
       for (ItemStack stack : stacks) {
         if (stack.isEmpty()) {
           return;
         }
 
-        NBTTagCompound compound = stack.getTagCompound();
+        CompoundNBT compound = stack.getTag();
 
-        if (compound == null || !compound.hasKey("RepairCost")) {
+        if (compound == null || !compound.contains("RepairCost")) {
           return;
         }
 
-        compound.removeTag("RepairCost");
+        compound.remove("RepairCost");
       }
     }
   }

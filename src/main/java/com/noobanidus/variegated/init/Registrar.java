@@ -1,47 +1,12 @@
 package com.noobanidus.variegated.init;
 
 import com.noobanidus.variegated.Variegated;
-import com.noobanidus.variegated.VariegatedConfig;
-import com.noobanidus.variegated.blocks.BlockDefiledGround;
-import com.noobanidus.variegated.blocks.BlockFeatherweight;
-import com.noobanidus.variegated.compat.bloodmagic.items.BloodApple;
-import com.noobanidus.variegated.compat.botania.enchantment.EnchantmentManabound;
-import com.noobanidus.variegated.compat.thaumcraft.blocks.BlockCompressedVisBattery;
-import com.noobanidus.variegated.compat.thaumcraft.blocks.PorousStoneProvider;
-import com.noobanidus.variegated.potions.PotionBoon;
-import com.noobanidus.variegated.potions.PotionLove;
-import com.noobanidus.variegated.potions.PotionWings;
-import com.noobanidus.variegated.tileentities.TileEntityDefiledGround;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.init.PotionTypes;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionHelper;
-import net.minecraft.potion.PotionType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import thaumcraft.api.blocks.BlocksTC;
-
-import java.util.Objects;
 
 @SuppressWarnings("WeakerAccess")
 @Mod.EventBusSubscriber(modid = Variegated.MODID)
 public class Registrar {
-  public static Block compressed = null;
+/*  public static Block compressed = null;
   public static ItemBlock ib_compressed = null;
 
   public static Block defiled = null;
@@ -87,7 +52,7 @@ public class Registrar {
       ib_compressed = new ItemBlock(compressed);
       ib_compressed.setRegistryName(compressed.getRegistryName());
 
-      if (VariegatedConfig.Thaumcraft.replacePorous) {
+      if (com.noobanidus.variegated.VariegatedConfig.Thaumcraft.replacePorous) {
         porous = PorousStoneProvider.provide();
         ib_porous = new ItemBlock(porous);
         ib_porous.setRegistryName(porous.getRegistryName());
@@ -112,10 +77,10 @@ public class Registrar {
 
   @SubscribeEvent
   public static void registerBlocks(RegistryEvent.Register<Block> event) {
-    if (VariegatedConfig.Thaumcraft.enabled && Loader.isModLoaded("thaumcraft")) {
+    if (com.noobanidus.variegated.VariegatedConfig.Thaumcraft.enabled && Loader.isModLoaded("thaumcraft")) {
       event.getRegistry().register(compressed);
 
-      if (VariegatedConfig.Thaumcraft.replacePorous) {
+      if (com.noobanidus.variegated.VariegatedConfig.Thaumcraft.replacePorous) {
         event.getRegistry().register(porous);
         BlocksTC.stonePorous = porous;
       }
@@ -129,10 +94,10 @@ public class Registrar {
 
   @SubscribeEvent
   public static void registerItems(RegistryEvent.Register<Item> event) {
-    if (VariegatedConfig.Thaumcraft.enabled && Loader.isModLoaded("thaumcraft")) {
+    if (com.noobanidus.variegated.VariegatedConfig.Thaumcraft.enabled && Loader.isModLoaded("thaumcraft")) {
       event.getRegistry().register(ib_compressed);
 
-      if (VariegatedConfig.Thaumcraft.replacePorous) {
+      if (com.noobanidus.variegated.VariegatedConfig.Thaumcraft.replacePorous) {
         event.getRegistry().register(ib_porous);
       }
     }
@@ -146,12 +111,12 @@ public class Registrar {
     event.getRegistry().register(ib_featherweight);
   }
 
-  @SideOnly(Side.CLIENT)
+  @OnlyIn(Dist.CLIENT)
   @SubscribeEvent
   public static void registerModels(ModelRegistryEvent event) {
-    if (VariegatedConfig.Thaumcraft.enabled && Loader.isModLoaded("thaumcraft")) {
+    if (com.noobanidus.variegated.VariegatedConfig.Thaumcraft.enabled && Loader.isModLoaded("thaumcraft")) {
       ModelLoader.setCustomModelResourceLocation(ib_compressed, 0, new ModelResourceLocation(new ResourceLocation("variegated", "compressed_vis_battery"), "inventory"));
-      if (VariegatedConfig.Thaumcraft.replacePorous) {
+      if (com.noobanidus.variegated.VariegatedConfig.Thaumcraft.replacePorous) {
         ModelLoader.setCustomModelResourceLocation(ib_porous, 0, new ModelResourceLocation(Objects.requireNonNull(porous.getRegistryName()), "inventory"));
       }
     }
@@ -169,7 +134,7 @@ public class Registrar {
 
   @SubscribeEvent
   public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
-    if (VariegatedConfig.Botania.enabled && Loader.isModLoaded("botania")) {
+    if (com.noobanidus.variegated.VariegatedConfig.Botania.enabled && Loader.isModLoaded("botania")) {
       event.getRegistry().register(manabound);
     }
   }
@@ -189,7 +154,7 @@ public class Registrar {
     attractionI.setRegistryName(Variegated.MODID, "attraction");
     wingsI.setRegistryName(Variegated.MODID, "wings");
 
-    if (VariegatedConfig.fishermansBoon) {
+    if (com.noobanidus.variegated.VariegatedConfig.fishermansBoon) {
       event.getRegistry().register(boonI);
       event.getRegistry().register(boonII);
       event.getRegistry().register(boonIII);
@@ -198,14 +163,14 @@ public class Registrar {
       PotionHelper.addMix(boonII, Items.EMERALD, boonIII);
     }
 
-    if (VariegatedConfig.attraction) {
+    if (com.noobanidus.variegated.VariegatedConfig.attraction) {
       event.getRegistry().register(attractionI);
       PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromItem(Items.EMERALD), attractionI);
     }
 
-    if (VariegatedConfig.wings) {
+    if (com.noobanidus.variegated.VariegatedConfig.wings) {
       event.getRegistry().register(wingsI);
       PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromItem(Item.getItemFromBlock(Blocks.GOLD_BLOCK)), wingsI);
     }
-  }
+  }*/
 }

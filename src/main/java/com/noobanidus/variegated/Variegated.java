@@ -1,72 +1,50 @@
 package com.noobanidus.variegated;
 
-import com.noobanidus.variegated.compat.top.ITOPHandler;
-import com.noobanidus.variegated.init.Registrar;
-import com.noobanidus.variegated.proxy.ISidedProxy;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
+import com.noobanidus.variegated.registrate.CustomRegistrate;
+import com.noobanidus.variegated.setup.ClientSetup;
+import com.noobanidus.variegated.setup.CommonSetup;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtils;
-import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-@Mod.EventBusSubscriber
-@Mod(modid = Variegated.MODID, name = Variegated.MODNAME, version = Variegated.VERSION, dependencies = Variegated.DEPENDS)
+@Mod("variegated")
 @SuppressWarnings("WeakerAccess")
 public class Variegated {
   public static final String MODID = "variegated";
-  public static final String MODNAME = "Variegated";
-  public static final String VERSION = "GRADLE:VERSION";
-  public static final String DEPENDS = "after:thaumcraft;after:bloodmagic;after:extrautils2;after:botania;";
 
   @SuppressWarnings("unused")
-  public static final String KEY = "ca23084fc26ce53879eea4b7afb0a8d9da9744d7";
   public final static Logger LOG = LogManager.getLogger(MODID);
-  @SidedProxy(modId = MODID, clientSide = "com.noobanidus.variegated.proxy.ClientProxy", serverSide = "com.noobanidus.variegated.proxy.CommonProxy")
-  public static ISidedProxy proxy;
 
-  public static List<ITOPHandler> handlers = new ArrayList<>();
+  public static CustomRegistrate REGISTRATE;
 
-  public static CreativeTabs TAB = new CreativeTabs(MODID) {
+  public static ItemGroup ITEM_GROUP = new ItemGroup(MODID) {
     @Override
     public ItemStack createIcon() {
-      return new ItemStack(Registrar.silveredApple);
+      return null;
     }
   };
 
-  @Mod.Instance(Variegated.MODID)
-  public static Variegated instance;
+  public Variegated() {
+    ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);
+    ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
+    IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+    modBus.addListener(CommonSetup::init);
 
-  @Mod.EventHandler
-  public void preInit(FMLPreInitializationEvent event) {
-    proxy.preInit(event);
-  }
+    REGISTRATE = CustomRegistrate.create(MODID);
+    REGISTRATE.itemGroup(NonNullSupplier.of(() -> ITEM_GROUP));
 
-  @Mod.EventHandler
-  public void init(FMLInitializationEvent event) {
-    proxy.init(event);
-  }
-
-  @Mod.EventHandler
-  public void postInit(FMLPostInitializationEvent event) {
-    proxy.postInit(event);
-  }
-
-  @Mod.EventHandler
-  public void loadComplete(FMLLoadCompleteEvent event) {
-    proxy.loadComplete(event);
-  }
-
-  @Mod.EventHandler
-  public void serverStarting(FMLServerStartingEvent event) {
-    proxy.serverStarting(event);
+    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+      modBus.addListener(ClientSetup::init);
+    });
   }
 }

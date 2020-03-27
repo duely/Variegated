@@ -1,17 +1,15 @@
 package com.noobanidus.variegated.compat.vanilla.handlers;
 
 import com.noobanidus.variegated.Variegated;
-import com.noobanidus.variegated.VariegatedConfig;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
+import com.noobanidus.variegated.ConfigManager;
+import net.minecraft.entity.merchant.villager.VillagerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber(modid = Variegated.MODID)
 @SuppressWarnings("unused")
@@ -19,30 +17,30 @@ public class VillagerAgingHandler {
 
   @SubscribeEvent
   public static void onVillageInteract(PlayerInteractEvent.EntityInteract event) {
-    if (!VariegatedConfig.vanillaSettings.ageVillagers) {
+    if (!ConfigManager.vanillaSettings.ageVillagers) {
       return;
     }
 
     ItemStack item = event.getItemStack();
 
-    if (item.isEmpty() || !(event.getTarget() instanceof EntityVillager)) {
+    if (item.isEmpty() || !(event.getTarget() instanceof VillagerEntity)) {
       return;
     }
 
-    EntityPlayer player = event.getEntityPlayer();
+    PlayerEntity player = event.getPlayer();
     if (player.world.isRemote) {
       return;
     }
 
-    EntityVillager villager = (EntityVillager) event.getTarget();
+    VillagerEntity villager = (VillagerEntity) event.getTarget();
 
     if (villager.isChild() && item.getItem() == Items.EMERALD) {
-      BlockPos pos = villager.getPos();
-      ((WorldServer) villager.world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 2, 0, 0, 0, 0.5);
+      BlockPos pos = villager.getPosition();
+      //((ServerWorld) villager.world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 2, 0, 0, 0, 0.5);
 
-      villager.addGrowth(VariegatedConfig.vanillaSettings.ageValue);
+      villager.addGrowth(ConfigManager.vanillaSettings.ageValue);
 
-      if (!player.capabilities.isCreativeMode) {
+      if (!player.isCreative()) {
         item.shrink(1);
       }
 
